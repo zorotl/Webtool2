@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+/*
+ * Aufruf der Haupt-URL (/) sowie /home geben Home-View zurück
+ */
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
+/*
+ * Automatische Routs für Auth()
+ */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/*
+ * Resouceful Routes für die diversen Models
+ */
+Route::resource('itemCondition', 'ItemConditionController');
+Route::resource('itemType', 'ItemTypeController');
