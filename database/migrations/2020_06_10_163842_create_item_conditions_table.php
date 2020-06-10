@@ -15,6 +15,7 @@ class CreateItemConditionsTable extends Migration
     {
         Schema::create('item_conditions', function (Blueprint $table) {
             $table->id();
+            $table->string('zustand');
             $table->timestamps();
         });
     }

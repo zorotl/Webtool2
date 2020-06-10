@@ -15,6 +15,8 @@ class CreateItemTypesTable extends Migration
     {
         Schema::create('item_types', function (Blueprint $table) {
             $table->id();
+            $table->string('art');
+            $table->tinyInteger('priorität');
             $table->timestamps();
         });
     }
