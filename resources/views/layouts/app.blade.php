@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Webtools | @yield('sitetitle')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,60 +23,154 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+            <a class="navbar-brand" href="{{ url('/home') }}">
+                <i class="fas fa-warehouse"></i>
+                {{ config('app.name', 'Laravel') }}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
+                    </li>
 
-                    </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('warehouse*') ? 'active' : '' }}"
+                           href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Lager
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Artikel suchen</a>
+                            <a class="dropdown-item" href="#">Artikel hinzufügen</a>
+                            <a class="dropdown-item" href="#">Lager-Verwaltung</a>
+                            <a class="dropdown-item" href="#">Lager-Gruppen</a>
+                            <a class="dropdown-item" href="#">Marken</a>
+                            <a class="dropdown-item" href="#">Artikel-Art</a>
+                            <a class="dropdown-item" href="#">Artikel-Zustand</a>
+                        </div>
+                    </li>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('shop*') ? 'active' : '' }}"
+                           href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shop
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown02">
+                            <a class="dropdown-item" href="#">Suche</a>
+                            <a class="dropdown-item" href="#">Bestellungen</a>
+                            <a class="dropdown-item" href="#">Verwaltung</a>
+                            <a class="dropdown-item" href="#">Statistik</a>
+                            <a class="dropdown-item" href="#">History</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('calculator*') ? 'active' : '' }}"
+                           href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Preis-Rechner
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown03">
+                            <a class="dropdown-item" href="#">Rechner</a>
+                            <a class="dropdown-item" href="#">Eurokurs/MwSt ändern</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('links*') ? 'active' : '' }}" href="#">Links</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('account*') ? 'active' : '' }}"
+                           href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mein Konto
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="#">Mein Konto</a>
+                            <a class="dropdown-item" href="#">User: Verwaltung</a>
+                            <a class="dropdown-item" href="#">Link: Verwaltung</a>
+                            <a class="dropdown-item" href="#">Website: Verwaltung</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 
         <main class="py-4">
+            @isset($msg_success)
+                <div class="container">
+                    <div class="alert alert-success">
+                        {!! $msg_success !!}
+                    </div>
+                </div>
+            @endisset
+
+            @if($errors->any())
+                <div class="container">
+                    <div class="alert alert-danger">
+                        Bitte überprüfe deine Eingaben.
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
+
+        <!-- Footer -->
+        <footer class="footer mt-auto py-3 bg-primary text-white text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item pr-3"><a class="text-white" href="#">info@stws.ch</a></li>
+                <li class="list-inline-item pr-3"><a class="text-white" href="#">Impressum</a></li>
+                <li class="list-inline-item pr-3"><a class="text-white" href="#">Datenschutz</a></li>
+                <li class="list-inline-item">&copy; 2020 Webtools</li>
+            </ul>
+        </footer>
+        <!-- End Footer -->
+
     </div>
 </body>
 </html>
