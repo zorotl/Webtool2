@@ -50,15 +50,15 @@ class ItemConditionController extends Controller
             ]
         );
 
-        $condition = new ItemCondition(
+        $itemCondition = new ItemCondition(
             [
                 'zustand' => $request->zustand
             ]
         );
-        $condition->save();
+        $itemCondition->save();
 
         return redirect('/itemCondition')->with(
-            'msg_success', 'Speichern vom Zustand <b>' . $request->zustand . '</b> erfolgreich.'
+            'msg_success', 'Speichern von Zustand <b>' . $request->zustand . '</b> erfolgreich.'
         );
     }
 
@@ -77,11 +77,11 @@ class ItemConditionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\ItemCondition  $itemCondition
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(ItemCondition $itemCondition)
     {
-        //
+        return view('warehouse.item.condition.edit')->with('itemCondition', $itemCondition);
     }
 
     /**
@@ -89,11 +89,26 @@ class ItemConditionController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\ItemCondition  $itemCondition
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, ItemCondition $itemCondition)
     {
-        //
+        $request->validate(
+            [
+                'zustand' => 'required | min:2'
+            ]
+        );
+
+        $itemCondition->update(
+            [
+                'zustand' => $request->zustand
+            ]
+        );
+        $itemCondition->save();
+
+        return redirect('/itemCondition')->with(
+            'msg_success', 'Änderung von Zustand <b>' . $request->zustand . '</b> erfolgreich gespeichert.'
+        );
     }
 
     /**

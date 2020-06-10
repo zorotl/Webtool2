@@ -8,7 +8,7 @@
             <div class="col-12 col-lg-8">
                 <h1 class="text-primary">Lager</h1>
                 <h2 class="h3 text-primary my-4">Artikel-Zustände</h2>
-                <ul class="list-group">
+                <ul class="list-group list-group-striped border">
                     @foreach($itemConditions as $iC)
                         <li class="list-group-item">
                             <span>{{ $iC->zustand }}</span>
