@@ -115,10 +115,15 @@ class ItemConditionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\ItemCondition  $itemCondition
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(ItemCondition $itemCondition)
     {
-        //
+        $oldName = $itemCondition->zustand;
+        $itemCondition->delete();
+
+        return back()->with([
+            'msg_success' => 'Der Zustand <b>' .$oldName. '</b> wurde gelöscht.'
+        ]);
     }
 }
