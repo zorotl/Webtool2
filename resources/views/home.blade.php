@@ -11,7 +11,8 @@
         @endif
 
 
-        <h1>Home</h1>
+        <h1 class="text-primary">Home</h1>
+        <h2 class="h3 text-primary my-4">Web-Tools, die den Alltag erleichtern!</h2>
 
         <div class="row">
             <div class="col-md-12">
@@ -26,8 +27,8 @@
                             in denen sich wiederum diverse Lager und Lagerort befinden.<br><br>
                             So behalten Sie stehts die Übersicht.
                         </p>
-                        <a href="#" class="btn btn-primary">Artikel suchen</a>
-                        <a href="#" class="btn btn-primary">Artikel hinzufügen</a>
+                        <a href="#" class="btn btn-primary">Artikel im Lager suchen</a>
+                        <a href="#" class="btn btn-primary ml-3">Artikel im Lager hinzufügen</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +54,7 @@
             <div class="col-md-6 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-primary">Netto -> Brutto Rechner</h3>
+                        <h3 class="card-title text-primary">Netto-Brutto Rechner</h3>
                         <p class="card-text">
                             Das Tool "Netto-Brutto Rechner" ist ein nützlicher Helfer im Alltag, der Fehler beim
                             Umrechnen von Preisen vermindert.<br><br>
