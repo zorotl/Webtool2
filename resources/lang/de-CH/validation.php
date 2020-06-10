@@ -78,7 +78,7 @@ return [
     'max' => [
         'numeric' => ':attribute darf maximal :max sein.',
         'file'    => ':attribute darf maximal :max Kilobytes gross sein.',
-        'string'  => ':attribute darf maximal :max Zeichen haben.',
+        'string'  => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> darf maximal :max Zeichen lang sein.',
         'array'   => ':attribute darf nicht mehr als :max Elemente haben.',
     ],
     'mimes'     => ':attribute muss den Dateityp :values haben.',
@@ -86,7 +86,7 @@ return [
     'min'       => [
         'numeric' => ':attribute muss mindestens :min sein.',
         'file'    => ':attribute muss mindestens :min Kilobytes gross sein.',
-        'string'  => ':attribute muss mindestens :min Zeichen lang sein.',
+        'string'  => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> muss mindestens :min Zeichen lang sein.',
         'array'   => ':attribute muss mindestens :min Elemente haben.',
     ],
     'not_in'               => 'Der gewählte Wert für :attribute ist ungültig.',
@@ -95,7 +95,7 @@ return [
     'password'             => 'Das Passwort ist falsch.',
     'present'              => ':attribute muss vorhanden sein.',
     'regex'                => ':attribute Format ist ungültig.',
-    'required'             => ':attribute muss ausgefüllt sein.',
+    'required'             => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> ist ein Pflichtfeld.',
     'required_if'          => ':attribute muss ausgefüllt sein, wenn :other :value ist.',
     'required_unless'      => ':attribute muss ausgefüllt sein, wenn :other nicht :values ist.',
     'required_with'        => ':attribute muss angegeben werden, wenn :values ausgefüllt wurde.',
