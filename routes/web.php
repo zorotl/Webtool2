@@ -30,3 +30,4 @@ Auth::routes();
 Route::resource('itemCondition', 'ItemConditionController');
 Route::resource('itemType', 'ItemTypeController');
 Route::resource('warehouse', 'WarehouseController');
+Route::resource('brand', 'BrandController');

@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('sitetitle', 'Artikel-Zustände')
+@section('sitetitle', 'Marken')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <h1 class="h2 text-primary my-3">Lager: Artikel-Zustände</h1>
+                <h1 class="h2 text-primary my-3">Lager: Marke</h1>
                 <ul class="list-group list-group-striped border">
-                    @foreach($itemConditions as $iC)
+                    @foreach($brands as $b)
                         <li class="list-group-item">
-                            <span>{{ $iC->zustand }}</span>
+                            <span>{{ $b->marke }}</span>
                             <div class="float-right">
                                 <a class="ml-2 btn btn-sm btn-outline-primary"
-                                   href="/itemCondition/{{ $iC->id }}/edit">
+                                   href="/brand/{{ $b->id }}/edit">
                                     <i class="fas fa-edit"></i>
                                     Bearbeiten
                                 </a>
-                                <form style="display: inline;" action="/itemCondition/{{ $iC->id }}" method="post">
+                                <form style="display: inline;" action="/brand/{{ $b->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input onclick="return confirm('Wirklich löschen?')"
@@ -27,8 +27,8 @@
                         </li>
                     @endforeach
                 </ul>
-                <a class="btn btn-primary mt-4" href="/itemCondition/create">
-                    <i class="fas fa-plus-circle mr-2"></i> Neuen Zustand hinzufügen
+                <a class="btn btn-primary mt-4" href="/brand/create">
+                    <i class="fas fa-plus-circle mr-2"></i> Neue Marke hinzufügen
                 </a>
             </div>
         </div>

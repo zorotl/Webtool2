@@ -1,28 +1,28 @@
 @extends('layouts.app')
 
-@section('sitetitle', 'Lager-Verwaltung')
+@section('sitetitle', 'Lager-Verwaltung - Details')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <h1 class="h2 text-primary my-3">Lager: Lager-Verwaltung</h1>
+                <h1 class="h2 text-primary my-3">Lager: Details für <b>{{ $warehouse->lager }}</b></h1>
                 <ul class="list-group list-group-striped border">
-                    @foreach($warehouses as $w)
+                    @foreach($warehouse as $w)
                         <li class="list-group-item">
-                            <span>{{ $w->lager }}</span>
+                            <span>{{ $warehouse->lager }}</span>
                             <div class="float-right">
                                 <a class="ml-2 btn btn-sm btn-outline-secondary"
-                                   href="/warehouse/{{ $w->id }}">
+                                   href="/warehouse/{{ $warehouse->id }}">
                                     <i class="fas fa-info mr-1"></i>
                                     Details anzeigen
                                 </a>
                                 <a class="ml-2 btn btn-sm btn-outline-primary"
-                                   href="/warehouse/{{ $w->id }}/edit">
+                                   href="/warehouse/{{ $warehouse->id }}/edit">
                                     <i class="fas fa-edit"></i>
                                     Bearbeiten
                                 </a>
-                                <form style="display: inline;" action="/warehouse/{{ $w->id }}" method="post">
+                                <form style="display: inline;" action="/warehouse/{{ $warehouse->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input onclick="return confirm('Wirklich löschen?')"

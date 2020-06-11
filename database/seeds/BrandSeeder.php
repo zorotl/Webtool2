@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Brand;
 
 class BrandSeeder extends Seeder
 {
@@ -11,6 +12,16 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $brands = ['Acer', 'Dell', 'HP', 'Philips', 'Samsung', 'Denon', 'Electrolux', 'V-Zug'];
+
+        foreach ($brands as $b)
+        {
+            $brand = new Brand(
+                [
+                    'marke' => $b,
+                ]
+            );
+            $brand->save();
+        }
     }
 }

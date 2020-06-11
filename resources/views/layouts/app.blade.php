@@ -49,7 +49,7 @@
                             <a class="dropdown-item" href="#">Artikel hinzufügen</a>
                             <a class="dropdown-item" href="/warehouse">Lager-Verwaltung</a>
                             <a class="dropdown-item" href="#">Lager-Gruppen</a>
-                            <a class="dropdown-item" href="#">Marken</a>
+                            <a class="dropdown-item" href="/brand">Marken</a>
                             <a class="dropdown-item" href="/itemType">Artikel-Art</a>
                             <a class="dropdown-item" href="/itemCondition">Artikel-Zustand</a>
                         </div>

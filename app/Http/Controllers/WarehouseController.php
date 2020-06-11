@@ -66,11 +66,20 @@ class WarehouseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Warehouse  $warehouse
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Warehouse $warehouse)
     {
-        //
+        $msg_success = Session::get('msg_success');
+
+        $storageLocations = null;
+
+        return view('warehouse.show')->with(
+            [
+                'warehouse' => $warehouse,
+                'msg_success' => $msg_success
+            ]
+        );
     }
 
     /**

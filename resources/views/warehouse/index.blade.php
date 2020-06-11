@@ -12,6 +12,11 @@
                         <li class="list-group-item">
                             <span>{{ $w->lager }}</span>
                             <div class="float-right">
+                                <a class="ml-2 btn btn-sm btn-outline-secondary"
+                                   href="/warehouse/{{ $w->id }}">
+                                    <i class="fas fa-info mr-1"></i>
+                                    Details anzeigen
+                                </a>
                                 <a class="ml-2 btn btn-sm btn-outline-primary"
                                    href="/warehouse/{{ $w->id }}/edit">
                                     <i class="fas fa-edit"></i>
