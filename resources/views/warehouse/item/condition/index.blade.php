@@ -6,8 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <h1 class="text-primary">Lager</h1>
-                <h2 class="h3 text-primary my-4">Artikel-Zustände</h2>
+                <h1 class="h2 text-primary my-3">Lager: Artikel-Zustände</h1>
                 <ul class="list-group list-group-striped border">
                     @foreach($itemConditions as $iC)
                         <li class="list-group-item">
