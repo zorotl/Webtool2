@@ -11,7 +11,7 @@
                 <ul class="list-group list-group-striped border">
                     @foreach($itemType as $iT)
                         <li class="list-group-item">
-                            <span>{{ $iT->art }} ({{ $iT->priorität }})</span>
+                            <span>{{ $iT->art }} (Priorität: {{ $iT->priorität }})</span>
                             <div class="float-right">
                                 <a class="ml-2 btn btn-sm btn-outline-primary"
                                    href="/itemType/{{ $iT->id }}/edit">

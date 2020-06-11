@@ -48,7 +48,7 @@ class ItemTypeController extends Controller
         $request->validate(
             [
                 'art' => 'required | min:3',
-                'priorität' => 'required | integer | min:1 | max:9'
+                'priorität' => 'required | integer | min:0 | max:9'
             ]
         );
 
@@ -80,11 +80,11 @@ class ItemTypeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\ItemType  $itemType
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(ItemType $itemType)
     {
-        //
+        return view('warehouse.item.type.edit')->with('itemType', $itemType);
     }
 
     /**
@@ -92,21 +92,43 @@ class ItemTypeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\ItemType  $itemType
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, ItemType $itemType)
     {
-        //
+        $request->validate(
+            [
+                'art' => 'required | min:3',
+                'priorität' => 'required | integer | min:0 | max:9'
+            ]
+        );
+
+        $itemType->update(
+            [
+                'art' => $request->art,
+                'priorität' => $request->priorität
+            ]
+        );
+        $itemType->save();
+
+        return redirect('/itemType')->with(
+            'msg_success', 'Änderung von Art <b>' . $request->art . '</b> erfolgreich gespeichert.'
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\ItemType  $itemType
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(ItemType $itemType)
     {
-        //
+        $oldName = $itemType->art;
+        $itemType->delete();
+
+        return back()->with([
+            'msg_success' => 'Die Art <b>' .$oldName. '</b> wurde gelöscht.'
+        ]);
     }
 }
