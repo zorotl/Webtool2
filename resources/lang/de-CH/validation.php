@@ -76,7 +76,7 @@ return [
         'array'   => ':attribute muss kleiner oder gleich :value Elemente haben.',
     ],
     'max' => [
-        'numeric' => ':attribute darf maximal :max sein.',
+        'numeric' => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> darf maximal :max sein.',
         'file'    => ':attribute darf maximal :max Kilobytes gross sein.',
         'string'  => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> darf maximal :max Zeichen lang sein.',
         'array'   => ':attribute darf nicht mehr als :max Elemente haben.',
@@ -84,7 +84,7 @@ return [
     'mimes'     => ':attribute muss den Dateityp :values haben.',
     'mimetypes' => ':attribute muss den Dateityp :values haben.',
     'min'       => [
-        'numeric' => ':attribute muss mindestens :min sein.',
+        'numeric' => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> muss mindestens :min sein.',
         'file'    => ':attribute muss mindestens :min Kilobytes gross sein.',
         'string'  => '<span style="font-weight: bold; text-transform: capitalize">:attribute</span> muss mindestens :min Zeichen lang sein.',
         'array'   => ':attribute muss mindestens :min Elemente haben.',
