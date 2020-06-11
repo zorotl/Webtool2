@@ -6,7 +6,6 @@ use App\ItemType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-
 class ItemTypeController extends Controller
 {
     /**

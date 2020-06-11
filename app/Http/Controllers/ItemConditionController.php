@@ -16,7 +16,7 @@ class ItemConditionController extends Controller
     public function index()
     {
         $msg_success = Session::get('msg_success');
-        $itemConditions = ItemCondition::all();
+        $itemConditions = ItemCondition::orderBy('zustand')->get();
 
         return view('warehouse.item.condition.index')->with(
             [
