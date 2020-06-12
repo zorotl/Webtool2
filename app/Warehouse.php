@@ -8,5 +8,8 @@ class Warehouse extends Model
 {
     protected $fillable = ['lager'];
 
-    //
+    public function storage_locations()
+    {
+        return $this->hasMany('App\StorageLocation');
+    }
 }

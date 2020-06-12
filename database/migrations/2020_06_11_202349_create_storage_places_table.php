@@ -15,7 +15,12 @@ class CreateStoragePlacesTable extends Migration
     {
         Schema::create('storage_places', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('storage_location_id')->unsigned();
+            $table->string('lagerplatz');
             $table->timestamps();
+
+            $table->foreign('storage_location_id')->references('id')->on('storage_locations')
+                ->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
