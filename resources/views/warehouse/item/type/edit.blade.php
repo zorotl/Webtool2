@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="art">Art</label>
                             <input type="text" class="form-control {{ $errors->has('art') ? 'border-danger' : ''}}"
-                                   id="art" name="art" value="{{ $itemType->art ?? old('art') }}" autofocus>
+                                   id="art" name="art" value="{{ old('art') ?? $itemType->art }}" autofocus>
                             <small class="form-text text-danger">{!! $errors->first('art') !!}</small>
                         </div>
                         <div class="form-group">

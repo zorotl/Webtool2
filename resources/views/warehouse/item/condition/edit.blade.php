@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="zustand">Zustand</label>
                             <input type="text" class="form-control {{ $errors->has('zustand') ? 'border-danger' : ''}}"
-                                   id="zustand" name="zustand" value="{{ $itemCondition->zustand ?? old('zustand') }}" autofocus>
+                                   id="zustand" name="zustand" value="{{ old('zustand') ?? $itemCondition->zustand }}" autofocus>
                             <small class="form-text text-danger">{!! $errors->first('zustand') !!}</small>
                         </div>
                         <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">

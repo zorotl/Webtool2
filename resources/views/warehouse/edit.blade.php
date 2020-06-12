@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="lager">Lager</label>
                             <input type="text" class="form-control {{ $errors->has('lager') ? 'border-danger' : ''}}"
-                                   id="lager" name="lager" value="{{ $warehouse->lager ?? old('lager') }}" autofocus>
+                                   id="lager" name="lager" value="{{ old('lager') ?? $warehouse->lager }}" autofocus>
                             <small class="form-text text-danger">{!! $errors->first('lager') !!}</small>
                         </div>
                         <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">
