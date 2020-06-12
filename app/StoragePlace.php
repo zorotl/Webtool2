@@ -8,7 +8,7 @@ class StoragePlace extends Model
 {
     protected $fillable = ['lagerplatz', 'storage_location_id'];
 
-    public function storage_locations()
+    public function storageLocation()
     {
         return $this->belongsTo('App\StorageLocation');
     }

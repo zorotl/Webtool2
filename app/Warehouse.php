@@ -8,7 +8,7 @@ class Warehouse extends Model
 {
     protected $fillable = ['lager'];
 
-    public function storage_locations()
+    public function storageLocations()
     {
         return $this->hasMany('App\StorageLocation');
     }
