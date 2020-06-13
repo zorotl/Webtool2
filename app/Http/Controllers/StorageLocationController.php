@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\StorageLocation;
+use App\StoragePlace;
 use App\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -79,16 +80,17 @@ class StorageLocationController extends Controller
      */
     public function show(StorageLocation $storageLocation)
     {
-//        $msg_success = Session::get('msg_success');
-//
-//        $storageLocations = null;
-//
-//        return view('warehouse.storage.location.show')->with(
-//            [
-//                'storageLocation' => $storageLocation,
-//                'msg_success' => $msg_success
-//            ]
-//        );
+        $msg_success = Session::get('msg_success');
+
+        $storagePlaces = StoragePlace::where('storage_location_id', $storageLocation->id)->get();
+
+        return view('warehouse.storage.location.show')->with(
+            [
+                'storageLocation' => $storageLocation,
+                'storagePlaces' => $storagePlaces,
+                'msg_success' => $msg_success
+            ]
+        );
     }
 
     /**

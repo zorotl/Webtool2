@@ -7,48 +7,25 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <h1 class="h2 text-primary my-3">Lager: Lagerplatz bearbeiten</h1>
-                <form action="/storage_place" method="post">
+                <form action="/storage_place/{{ $storagePlace->id }}" method="post">
                     <fieldset class="border border-secondary rounded-lg p-4">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="lagerplatz">Lagerplatz</label>
                             <input type="text" class="form-control {{ $errors->has('lagerplatz') ? 'border-danger' : ''}}"
                                    id="lagerplatz" name="lagerplatz" value="{{ old('lagerplatz') ?? $storagePlace->lagerplatz }}" autofocus>
                             <small class="form-text text-danger">{!! $errors->first('lagerplatz') !!}</small>
                         </div>
-
                         <div class="form-group">
-                            <label for="lager">Lager</label>
-                            <select name="lager" id="lager" class="form-control {{ $errors->has('lager') ? 'border-danger' : ''}}">
-                                <option value="">Bitte wählen</option>
-                                @foreach($warehouses as $w)
-                                    <option value="{{ $w->id }}"
-                                        @if($w->id === $storagePlace->storageLocation->warehouse_id)
-                                        selected
-                                        @endif
-                                    >{{ $w->lager }}</option>
-                                @endforeach
-                            </select>
-                            <small class="form-text text-danger">{!! $errors->first('lager') !!}</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lagerort">Lagerort</label>
+                            <label for="lagerort">Lager - Lagerort</label>
                             <select name="lagerort" id="lagerort" class="form-control {{ $errors->has('lagerort') ? 'border-danger' : ''}}">
-                                <option value="">Bitte wählen</option>
-                                @foreach($storageLocations as $sL)
-                                    <option value="{{ $sL->id }}"
-                                        @if($sL->id === $storagePlace->storage_location_id)
-                                        selected
-                                        @endif
-                                    >{{ $sL->lagerort }} von {{ $sL->warehouse->lager }}</option>
-                                @endforeach
+                                <option value="{{ $storageLocation->id }}">{{ $storageLocation->warehouse->lager }} - {{ $storageLocation->lagerort }}</option>
                             </select>
                             <small class="form-text text-danger">{!! $errors->first('lagerort') !!}</small>
                         </div>
-
-                        <input class="btn btn-primary mt-4" type="submit" value="Hinzufügen">
-                        <a class="btn btn-primary mt-4 float-lg-right" href="/storage_place">
+                        <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">
+                        <a class="btn btn-primary mt-4 float-lg-right" href="/storage_place/{{ $storageLocation->id }}">
                             <i class="fas fa-arrow-circle-up mr-2"></i>
                             Zurück
                         </a>

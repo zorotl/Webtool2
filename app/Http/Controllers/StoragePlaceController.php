@@ -33,15 +33,13 @@ class StoragePlaceController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        $warehouses = Warehouse::orderBy('lager')->get();
-        $storageLocations = StorageLocation::orderBy('warehouse_id')->orderBy('lagerort')->get();
+        $storageLocation = StorageLocation::where('id', $request->storage_location_id)->first();
 
         return view('warehouse.storage.place.create')->with(
             [
-                'warehouses' => $warehouses,
-                'storageLocations' => $storageLocations
+                'storageLocation' => $storageLocation
             ]
         );
     }
@@ -69,7 +67,7 @@ class StoragePlaceController extends Controller
         );
         $storagePlace->save();
 
-        return redirect('/storage_place')->with(
+        return redirect('/storage_location/'.$request->lagerort)->with(
             'msg_success', 'Speichern von Lagerplatz <b>' . $request->lagerplatz . '</b> erfolgreich.'
         );
     }
@@ -82,16 +80,7 @@ class StoragePlaceController extends Controller
      */
     public function show(StoragePlace $storagePlace)
     {
-//        $msg_success = Session::get('msg_success');
-//
-//        $storagePlaces = null;
-//
-//        return view('warehouse.storage.place.show')->with(
-//            [
-//                'storageLocation' => $storagePlace,
-//                'msg_success' => $msg_success
-//            ]
-//        );
+        //
     }
 
     /**
@@ -100,19 +89,16 @@ class StoragePlaceController extends Controller
      * @param  \App\StoragePlace  $storagePlace
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(StoragePlace $storagePlace)
+    public function edit(StoragePlace $storagePlace, Request $request)
     {
-        $warehouses = Warehouse::orderBy('lager')->get();
-        $storageLocations = StorageLocation::orderBy('warehouse_id')->orderBy('lagerort')->get();
+        $storageLocation = StorageLocation::where('id', $request->storage_location_id)->first();
 
         return view('warehouse.storage.place.edit')->with(
             [
-                'warehouses' => $warehouses,
-                'storageLocations' => $storageLocations,
+                'storageLocation' => $storageLocation,
                 'storagePlace' => $storagePlace
             ]
         );
-
     }
 
     /**
@@ -139,7 +125,7 @@ class StoragePlaceController extends Controller
         );
         $storagePlace->save();
 
-        return redirect('/storage_place')->with(
+        return redirect('/storage_location/'.$request->lagerort)->with(
             'msg_success', 'Änderung von Lagerplatz <b>' . $request->lagerplatz . '</b> erfolgreich gespeichert.'
         );
     }
@@ -156,7 +142,7 @@ class StoragePlaceController extends Controller
         $storagePlace->delete();
 
         return back()->with([
-            'msg_success' => 'Das Lagerplatz <b>' .$oldName. '</b> wurde gelöscht.'
+            'msg_success' => 'Der Lagerplatz <b>' .$oldName. '</b> wurde gelöscht.'
         ]);
     }
 }
