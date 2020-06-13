@@ -20,8 +20,9 @@
                                 <form style="display: inline;" action="/brand/{{ $b->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <input onclick="return confirm('Wirklich löschen?')"
-                                           class="btn btn-outline-danger btn-sm ml-2" type="submit" value="Löschen">
+                                    <button onclick="return confirm('Wirklich löschen?')" class="btn btn-outline-danger btn-sm ml-2" type="submit">
+                                        <i class="far fa-trash-alt mr-1"></i> Löschen
+                                    </button>
                                 </form>
                             </div>
                         </li>

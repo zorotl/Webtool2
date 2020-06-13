@@ -16,7 +16,9 @@
                                    id="marke" name="marke" value="{{ old('marke') }}" autofocus>
                             <small class="form-text text-danger">{!! $errors->first('marke') !!}</small>
                         </div>
-                        <input class="btn btn-primary mt-4" type="submit" value="Hinzufügen">
+                        <button class="btn btn-primary mt-4" type="submit">
+                            <i class="fas fa-plus-circle mr-2"></i> Hinzufügen
+                        </button>
                         <a class="btn btn-primary mt-4 float-lg-right" href="/brand">
                             <i class="fas fa-arrow-circle-up mr-2"></i>
                             Zurück

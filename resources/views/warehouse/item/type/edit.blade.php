@@ -24,7 +24,9 @@
                                    placeholder="Priorität von 1 (sehr hoch) bis 9 (sehr tief)">
                             <small class="form-text text-danger">{!! $errors->first('priorität') !!}</small>
                         </div>
-                        <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">
+                        <button class="btn btn-primary mt-4" type="submit">
+                            <i class="fas fa-edit"></i> Änderung speichern
+                        </button>
                         <a class="btn btn-primary mt-4 float-lg-right" href="/itemType">
                             <i class="fas fa-arrow-circle-up mr-2"></i>
                             Zurück

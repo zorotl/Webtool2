@@ -152,7 +152,7 @@ class StorageLocationController extends Controller
         $storageLocation->delete();
 
         return back()->with([
-            'msg_success' => 'Das Lagerort <b>' .$oldName. '</b> wurde gelöscht.'
+            'msg_success' => 'Der Lagerort <b>' .$oldName. '</b> wurde gelöscht.'
         ]);
     }
 }

@@ -24,7 +24,9 @@
                             </select>
                             <small class="form-text text-danger">{!! $errors->first('lagerort') !!}</small>
                         </div>
-                        <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">
+                        <button class="btn btn-primary mt-4" type="submit">
+                            <i class="fas fa-edit"></i> Änderung speichern
+                        </button>
                         <a class="btn btn-primary mt-4 float-lg-right" href="/storage_place/{{ $storageLocation->id }}">
                             <i class="fas fa-arrow-circle-up mr-2"></i>
                             Zurück
