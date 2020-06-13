@@ -32,13 +32,13 @@ class StorageLocationController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        $warehouses = Warehouse::orderBy('lager')->get();
+        $warehouse = Warehouse::where('id', $request->warehouse_id)->first();
 
         return view('warehouse.storage.location.create')->with(
             [
-                'warehouses' => $warehouses
+                'warehouse' => $warehouse
             ]
         );
     }
@@ -66,7 +66,7 @@ class StorageLocationController extends Controller
         );
         $storageLocation->save();
 
-        return redirect('/storage_location')->with(
+        return redirect('/warehouse/'.$request->lager)->with(
             'msg_success', 'Speichern von Lagerort <b>' . $request->lagerort . '</b> erfolgreich.'
         );
     }
@@ -97,17 +97,16 @@ class StorageLocationController extends Controller
      * @param  \App\StorageLocation  $storageLocation
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(StorageLocation $storageLocation)
+    public function edit(StorageLocation $storageLocation, Request $request)
     {
-        $warehouses = Warehouse::orderBy('lager')->get();
+        $warehouse = Warehouse::where('id', $request->warehouse_id)->first();
 
         return view('warehouse.storage.location.edit')->with(
             [
-                'warehouses' => $warehouses,
+                'warehouse' => $warehouse,
                 'storageLocation' => $storageLocation
             ]
         );
-
     }
 
     /**
@@ -134,7 +133,7 @@ class StorageLocationController extends Controller
         );
         $storageLocation->save();
 
-        return redirect('/storage_location')->with(
+        return redirect('/warehouse/'.$request->lager)->with(
             'msg_success', 'Änderung von Lagerort <b>' . $request->lagerort . '</b> erfolgreich gespeichert.'
         );
     }

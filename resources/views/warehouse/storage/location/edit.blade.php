@@ -20,21 +20,14 @@
 
                         <div class="form-group">
                             <label for="lager">Lager</label>
-                            <select name="lager" id="lager" class="form-control {{ $errors->has('lagerort') ? 'border-danger' : ''}}">
-                                @foreach($warehouses as $w)
-                                    <option value="{{ $w->id }}"
-                                        @if($w->id === $storageLocation->warehouse_id)
-                                            selected
-                                        @endif
-                                    >{{ $w->lager }}
-                                    </option>
-                                @endforeach
+                            <select name="lager" id="lager" class="form-control {{ $errors->has('lager') ? 'border-danger' : ''}}">
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->lager }}</option>
                             </select>
                             <small class="form-text text-danger">{!! $errors->first('lager') !!}</small>
                         </div>
 
                         <input class="btn btn-primary mt-4" type="submit" value="Änderung speichern">
-                        <a class="btn btn-primary mt-4 float-lg-right" href="/storage_location">
+                        <a class="btn btn-primary mt-4 float-lg-right" href="/warehouse/{{ $warehouse->id }}">
                             <i class="fas fa-arrow-circle-up mr-2"></i>
                             Zurück
                         </a>

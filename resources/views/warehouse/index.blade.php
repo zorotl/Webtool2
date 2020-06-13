@@ -15,7 +15,7 @@
                                 <a class="ml-2 btn btn-sm btn-outline-secondary"
                                    href="/warehouse/{{ $w->id }}">
                                     <i class="fas fa-info mr-1"></i>
-                                    Details anzeigen
+                                    Lagerorte anzeigen
                                 </a>
                                 <a class="ml-2 btn btn-sm btn-outline-primary"
                                    href="/warehouse/{{ $w->id }}/edit">

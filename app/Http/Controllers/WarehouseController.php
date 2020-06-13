@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Warehouse;
+use App\StorageLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -72,11 +73,12 @@ class WarehouseController extends Controller
     {
         $msg_success = Session::get('msg_success');
 
-        $storageLocations = null;
+        $storageLocations = StorageLocation::where('warehouse_id', $warehouse->id)->get();
 
         return view('warehouse.show')->with(
             [
                 'warehouse' => $warehouse,
+                'storageLocations' => $storageLocations,
                 'msg_success' => $msg_success
             ]
         );
