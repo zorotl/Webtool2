@@ -12,4 +12,9 @@ class StoragePlace extends Model
     {
         return $this->belongsTo('App\StorageLocation');
     }
+
+    public function items()
+    {
+        return $this->hasMany('App\Items');
+    }
 }
