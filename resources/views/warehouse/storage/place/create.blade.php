@@ -19,7 +19,7 @@
 
                         <div class="form-group">
                             <label for="lager">Lager</label>
-                            <select name="lager" id="lager" class="form-control {{ $errors->has('lagerplatz') ? 'border-danger' : ''}}">
+                            <select name="lager" id="lager" class="form-control {{ $errors->has('lager') ? 'border-danger' : ''}}">
                                 <option value="">Bitte wählen</option>
                             @foreach($warehouses as $w)
                                 <option value="{{ $w->id }}">{{ $w->lager }}</option>
@@ -29,14 +29,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="lager">Lager</label>
-                            <select name="lager" id="lager" class="form-control {{ $errors->has('lagerplatz') ? 'border-danger' : ''}}">
+                            <label for="lagerort">Lagerort</label>
+                            <select name="lagerort" id="lagerort" class="form-control {{ $errors->has('lagerort') ? 'border-danger' : ''}}">
                                 <option value="">Bitte wählen</option>
-                                @foreach($warehouses as $w)
-                                    <option value="{{ $w->id }}">{{ $w->lager }}</option>
+                                @foreach($storageLocations as $sL)
+                                    <option value="{{ $sL->id }}">{{ $sL->lagerort }} von {{ $sL->warehouse->lager }}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-danger">{!! $errors->first('lager') !!}</small>
+                            <small class="form-text text-danger">{!! $errors->first('lagerort') !!}</small>
                         </div>
 
                         <input class="btn btn-primary mt-4" type="submit" value="Hinzufügen">
