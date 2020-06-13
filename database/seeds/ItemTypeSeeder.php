@@ -16,8 +16,11 @@ class ItemTypeSeeder extends Seeder
             'Fernseher' => 2,
             'Computer' => 1,
             'Monitor' => 1,
+            'Maus' => 1,
+            'Tastatur' => 1,
             'Festplatte' => 1,
             'Backofen' => 3,
+            'Herd' => 3,
         ];
 
         foreach ($types as $key => $value) {
