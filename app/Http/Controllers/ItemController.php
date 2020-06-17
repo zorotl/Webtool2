@@ -4,15 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
+    {
+        $msg_success = Session::get('msg_success');
+        $items = Item::all();
+
+        return view('warehouse.item.index')->with(
+            [
+                'items' => $items,
+                'msg_success' => $msg_success
+            ]
+        );
+    }
+
+    /**
+     * Display a listing of the resource, search result.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search()
     {
         //
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,11 @@ Route::resource('warehouse', 'WarehouseController');
 Route::resource('storage_location', 'StorageLocationController');
 Route::resource('storage_place', 'StoragePlaceController');
 Route::resource('brand', 'BrandController');
+
+
+/*
+ * Routes für Item
+ */
+Route::resource('item', 'ItemController');
+Route::get('/item/search', 'ItemController@search')->name('item.search');
+Route::get('/item/result', 'ItemController@result')->name('item.result');

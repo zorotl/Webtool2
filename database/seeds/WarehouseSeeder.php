@@ -56,8 +56,8 @@ class WarehouseSeeder extends Seeder
                             'item_condition_id' => $item_condition_id['0'],
                             'item_type_id' => $item_type_id['0'],
                             'anzahl' => $anzahl['0'],
-                            'name' => "Beschreibung ".mt_rand(1000, 1000000),
-                            'name2' => "Beschreibung ".mt_rand(1000, 1000000),
+                            'name' => "Name ".mt_rand(1000, 1000000),
+                            'name2' => "Name 2 ".mt_rand(1000, 1000000),
                             'beschreibung' => "Beschreibung ".mt_rand(1000, 1000000),
                             'artikel_nummer' => "Art-".mt_rand(1000, 1000000),
                             'ean' => "EAN-".mt_rand(1000000000, 2147483647)
