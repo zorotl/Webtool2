@@ -33,14 +33,14 @@ class WarehouseSeeder extends Seeder
             foreach ($storageLocations as $sL) {
                 $storageLocation = new StorageLocation([
                     'warehouse_id' => $warehouse->id,
-                    'lagerort' => $sL,
+                    'lagerort' => $sL ." - ". substr($warehouse->lager, 6),
                 ]);
                 $storageLocation->save();
 
                 foreach ($storagePlaces as $sP) {
                     $storagePlace = new StoragePlace([
                         'storage_location_id' => $storageLocation->id,
-                        'lagerplatz' => $sP,
+                        'lagerplatz' => $sP ." - ". $storageLocation->lagerort,
                     ]);
                     $storagePlace->save();
 
