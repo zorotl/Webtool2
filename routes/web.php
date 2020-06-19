@@ -43,3 +43,4 @@ Route::resource('item', 'ItemController');
 Route::get('/item/search', 'ItemController@search')->name('item.search');
 Route::get('/item/result', 'ItemController@result')->name('item.result');
 Route::post('/item/get/storage/location', 'ItemController@getStorageLocations')->name('item.getSL');
+Route::post('/item/get/storage/place', 'ItemController@getStoragePlace')->name('item.getSP');

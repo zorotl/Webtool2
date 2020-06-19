@@ -127,6 +127,20 @@ class ItemController extends Controller
     }
 
     public function getStorageLocations() {
-        echo "Test aus PHP Funktion";
+        $storageLocations = StorageLocation::where('warehouse_id', $_POST['lager'])->get();
+
+        echo '<option selected value="0">Bitte wählen</option>';
+        $storageLocations->each(function ($item) {
+            echo '<option value="'.$item->id.'">'.$item->lagerort.'</option>';
+        });
+    }
+
+    public function getStoragePlace() {
+        $storagePlace = StoragePlace::where('storage_location_id', $_POST['lagerort'])->get();
+
+        echo '<option selected value="0">Bitte wählen</option>';
+        $storagePlace->each(function ($item) {
+            echo '<option value="'.$item->id.'">'.$item->lagerplatz.'</option>';
+        });
     }
 }
