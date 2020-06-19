@@ -45,11 +45,8 @@
                             Lager
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="/item">Artikel suchen</a>
-                            <a class="dropdown-item" href="#">Artikel hinzufügen</a>
+                            <a class="dropdown-item" href="/item">Artikel anzeigen</a>
                             <a class="dropdown-item" href="/warehouse">Lager</a>
-{{--                            <a class="dropdown-item" href="/storage_location">Lagerorte</a>--}}
-{{--                            <a class="dropdown-item" href="/storage_place">Lagerplätze</a>--}}
                             <a class="dropdown-item" href="/brand">Marken</a>
                             <a class="dropdown-item" href="/itemType">Artikel-Arten</a>
                             <a class="dropdown-item" href="/itemCondition">Artikel-Zustände</a>

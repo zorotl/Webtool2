@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Warehouse;
+use App\StorageLocation;
+use App\StoragePlace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -27,7 +30,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Display a listing of the resource, search result.
+     * Show the form for searching a resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -37,13 +40,34 @@ class ItemController extends Controller
     }
 
     /**
+     * Display a listing of the resource, filtered by searching-result.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function result(Request $request)
+    {
+        //
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        $warehouses = Warehouse::all();
+        $storageLocations = StorageLocation::all();
+        $storagePlaces = StoragePlace::all();
+
+        return view('warehouse.item.create')->with(
+            [
+                'warehouses' => $warehouses,
+                'storageLocations' => $storageLocations,
+                'storagePlaces' => $storagePlaces,
+            ]
+        );
     }
 
     /**
@@ -100,5 +124,9 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
+    }
+
+    public function getStorageLocations() {
+        echo "Test aus PHP Funktion";
     }
 }
