@@ -50,11 +50,11 @@
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a class="btn btn-sm btn-outline-primary ml-1"
-                                   href="/item/{{ $i->id }}/edit">
+                                   href="/item/{{ $i->id }}/plus">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <a class="btn btn-sm btn-outline-primary ml-1"
-                                   href="/item/{{ $i->id }}/edit">
+                                   href="/item/{{ $i->id }}/minus">
                                     <i class="fas fa-minus"></i>
                                 </a>
                                 <form style="display: inline;" action="/item/{{ $i->id }}" method="post">

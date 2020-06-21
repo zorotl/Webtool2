@@ -207,11 +207,16 @@ class ItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Item $item)
     {
-        //
+        $oldName = $item->name;
+        $item->delete();
+
+        return back()->with([
+            'msg_success' => 'Der Artikel <b>' .$oldName. '</b> wurde gelöscht.'
+        ]);
     }
 
     public function getStorageLocations() {
@@ -230,5 +235,42 @@ class ItemController extends Controller
         $storagePlace->each(function ($item) {
             echo '<option value="'.$item->id.'">'.$item->lagerplatz.'</option>';
         });
+    }
+
+    public function plus(Item $item) {
+        $anzahlNeu = $item->anzahl + 1;
+
+        $item->update(
+            [
+                'anzahl' => $anzahlNeu
+            ]
+        );
+        $item->save();
+
+        return redirect('/item')->with(
+            'msg_success', 'Anzahl von Ersatzteil <b>' . $item->name . '</b> um 1 erhöht.'
+        );
+    }
+
+    public function minus(Item $item) {
+        $anzahlNeu = $item->anzahl - 1;
+
+        if ($anzahlNeu < 0) {
+            return redirect('/item')->with(
+                'msg_success', 'Reduktion der Anzahl von Artikel <b>' . $item->name . '</b> nicht möglich.
+                 Es sind keine Minus-Bestände erlaubt.'
+            );
+        } else {
+            $item->update(
+                [
+                    'anzahl' => $anzahlNeu
+                ]
+            );
+            $item->save();
+
+            return redirect('/item')->with(
+                'msg_success', 'Anzahl von Ersatzteil <b>' . $item->name . '</b> um 1 reduziert.'
+            );
+        }
     }
 }
