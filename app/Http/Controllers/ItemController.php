@@ -6,6 +6,9 @@ use App\Item;
 use App\Warehouse;
 use App\StorageLocation;
 use App\StoragePlace;
+use App\Brand;
+use App\ItemCondition;
+use App\ItemType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -60,12 +63,18 @@ class ItemController extends Controller
         $warehouses = Warehouse::all();
         $storageLocations = StorageLocation::all();
         $storagePlaces = StoragePlace::all();
+        $brands = Brand::all();
+        $itemTypes = ItemType::all();
+        $itemConditions = ItemCondition::all();
 
         return view('warehouse.item.create')->with(
             [
                 'warehouses' => $warehouses,
                 'storageLocations' => $storageLocations,
                 'storagePlaces' => $storagePlaces,
+                'brands' => $brands,
+                'itemTypes' => $itemTypes,
+                'itemConditions' => $itemConditions,
             ]
         );
     }
@@ -74,11 +83,42 @@ class ItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'lager' => 'required',
+                'lagerort' => 'required',
+                'lagerplatz' => 'required',
+                'marke' => 'required',
+                'name' => 'required | min:3',
+                'anzahl' => 'required | numeric',
+                'art' => 'required',
+                'zustand' => 'required',
+            ]
+        );
+
+        $item = new Item(
+            [
+                'storage_place_id' => $request->lagerplatz,
+                'brand_id' => $request->marke,
+                'item_condition_id' => $request->zustand,
+                'item_type_id' => $request->art,
+                'anzahl' => $request->anzahl,
+                'name' => $request->name,
+                'name2' => $request->name2,
+                'beschreibung' => $request->beschreibung,
+                'artikel_nummer' => $request->artikelnummer,
+                'ean' => $request->ean,
+            ]
+        );
+        $item->save();
+
+        return redirect('/item')->with(
+            'msg_success', 'Speichern von Ersatzteil <b>' . $request->name . '</b> erfolgreich.'
+        );
     }
 
     /**
@@ -129,7 +169,7 @@ class ItemController extends Controller
     public function getStorageLocations() {
         $storageLocations = StorageLocation::where('warehouse_id', $_POST['lager'])->get();
 
-        echo '<option selected value="0">Bitte wählen</option>';
+        echo '<option value="0">Bitte wählen</option>';
         $storageLocations->each(function ($item) {
             echo '<option value="'.$item->id.'">'.$item->lagerort.'</option>';
         });
@@ -138,7 +178,7 @@ class ItemController extends Controller
     public function getStoragePlace() {
         $storagePlace = StoragePlace::where('storage_location_id', $_POST['lagerort'])->get();
 
-        echo '<option selected value="0">Bitte wählen</option>';
+        echo '<option value="0">Bitte wählen</option>';
         $storagePlace->each(function ($item) {
             echo '<option value="'.$item->id.'">'.$item->lagerplatz.'</option>';
         });

@@ -21,10 +21,10 @@ class CreateItemsTable extends Migration
             $table->bigInteger('item_type_id')->unsigned();
             $table->integer('anzahl');
             $table->string('name');
-            $table->string('name2');
-            $table->string('beschreibung');
-            $table->string('artikel_nummer');
-            $table->string('ean');
+            $table->string('name2')->nullable()->default(null);
+            $table->string('beschreibung')->nullable()->default(null);
+            $table->string('artikel_nummer')->nullable()->default(null);
+            $table->string('ean')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('storage_place_id')->references('id')->on('storage_places')
