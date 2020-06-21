@@ -136,11 +136,28 @@ class ItemController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Item $item)
     {
-        //
+        $warehouses = Warehouse::all();
+        $storageLocations = StorageLocation::all();
+        $storagePlaces = StoragePlace::all();
+        $brands = Brand::all();
+        $itemTypes = ItemType::all();
+        $itemConditions = ItemCondition::all();
+
+        return view('warehouse.item.edit')->with(
+            [
+                'item'=> $item,
+                'warehouses' => $warehouses,
+                'storageLocations' => $storageLocations,
+                'storagePlaces' => $storagePlaces,
+                'brands' => $brands,
+                'itemTypes' => $itemTypes,
+                'itemConditions' => $itemConditions,
+            ]
+        );
     }
 
     /**
@@ -148,11 +165,42 @@ class ItemController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate(
+            [
+                'lager' => 'required',
+                'lagerort' => 'required',
+                'lagerplatz' => 'required',
+                'marke' => 'required',
+                'name' => 'required | min:3',
+                'anzahl' => 'required | numeric',
+                'art' => 'required',
+                'zustand' => 'required',
+            ]
+        );
+
+        $item->update(
+            [
+                'storage_place_id' => $request->lagerplatz,
+                'brand_id' => $request->marke,
+                'item_condition_id' => $request->zustand,
+                'item_type_id' => $request->art,
+                'anzahl' => $request->anzahl,
+                'name' => $request->name,
+                'name2' => $request->name2,
+                'beschreibung' => $request->beschreibung,
+                'artikel_nummer' => $request->artikelnummer,
+                'ean' => $request->ean,
+            ]
+        );
+        $item->save();
+
+        return redirect('/item')->with(
+            'msg_success', 'Änderung von Ersatzteil <b>' . $request->name . '</b> erfolgreich gespeichert.'
+        );
     }
 
     /**
