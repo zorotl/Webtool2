@@ -40,7 +40,7 @@ Route::resource('brand', 'BrandController');
  * Routes für Item
  */
 Route::resource('item', 'ItemController');
-Route::get('/item/search', 'ItemController@search')->name('item.search');
+Route::post('/item/search', 'ItemController@search')->name('item.search');
 Route::get('/item/result', 'ItemController@result')->name('item.result');
 Route::get('/item/{item}/plus', 'ItemController@plus')->name('item.plus');
 Route::get('/item/{item}/minus', 'ItemController@minus')->name('item.minus');

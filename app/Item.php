@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $fillable = [
+        'warehouse_id',
+        'storage_location_id',
         'storage_place_id',
         'brand_id',
         'item_condition_id',

@@ -23,10 +23,13 @@ class ItemController extends Controller
     {
         $msg_success = Session::get('msg_success');
         $items = Item::all();
+        $warehouses = Warehouse::all();
+
 
         return view('warehouse.item.index')->with(
             [
                 'items' => $items,
+                'warehouses' => $warehouses,
                 'msg_success' => $msg_success
             ]
         );
@@ -37,9 +40,19 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search()
+    public function search(Request $request)
     {
-        //
+        $msg_success = Session::get('msg_success');
+        $items = Item::where('warehouse_id', $request->lager)->get();
+        $warehouses = Warehouse::all();
+
+        return view('warehouse.item.result')->with(
+            [
+                'items' => $items,
+                'warehouses' => $warehouses,
+                'msg_success' => $msg_success
+            ]
+        );
     }
 
     /**
@@ -48,7 +61,7 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function result(Request $request)
+    public function result()
     {
         //
     }
@@ -102,6 +115,8 @@ class ItemController extends Controller
 
         $item = new Item(
             [
+                'warehouse_id' => $request->lager,
+                'storage_location_id' => $request->lagerort,
                 'storage_place_id' => $request->lagerplatz,
                 'brand_id' => $request->marke,
                 'item_condition_id' => $request->zustand,
@@ -184,6 +199,8 @@ class ItemController extends Controller
 
         $item->update(
             [
+                'warehouse_id' => $request->lager,
+                'storage_location_id' => $request->lagerort,
                 'storage_place_id' => $request->lagerplatz,
                 'brand_id' => $request->marke,
                 'item_condition_id' => $request->zustand,

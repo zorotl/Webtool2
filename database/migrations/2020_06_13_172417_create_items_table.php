@@ -15,6 +15,8 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('warehouse_id')->unsigned();
+            $table->bigInteger('storage_location_id')->unsigned();
             $table->bigInteger('storage_place_id')->unsigned();
             $table->bigInteger('brand_id')->unsigned();
             $table->bigInteger('item_condition_id')->unsigned();
@@ -27,6 +29,10 @@ class CreateItemsTable extends Migration
             $table->string('ean')->nullable()->default(null);
             $table->timestamps();
 
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')
+                ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('storage_location_id')->references('id')->on('storage_locations')
+                ->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('storage_place_id')->references('id')->on('storage_places')
                 ->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('brand_id')->references('id')->on('brands')

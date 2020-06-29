@@ -51,6 +51,8 @@ class WarehouseSeeder extends Seeder
                         shuffle($anzahl);
 
                         $item = new Item([
+                            'warehouse_id' => $warehouse->id,
+                            'storage_location_id' => $storageLocation->id,
                             'storage_place_id' => $storagePlace->id,
                             'brand_id' => $brand_id['0'],
                             'item_condition_id' => $item_condition_id['0'],
