@@ -34,6 +34,7 @@ Route::resource('warehouse', 'WarehouseController');
 Route::resource('storage_location', 'StorageLocationController');
 Route::resource('storage_place', 'StoragePlaceController');
 Route::resource('brand', 'BrandController');
+Route::resource('calculator', 'CalculatorController');
 
 
 /*

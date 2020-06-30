@@ -71,11 +71,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('calculator*') ? 'active' : '' }}"
                            href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Preis-Rechner
+                            Tools
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
-                            <a class="dropdown-item" href="#">Rechner</a>
-                            <a class="dropdown-item" href="#">Eurokurs/MwSt ändern</a>
+                            <a class="dropdown-item" href="/calculator">Rechner</a>
+                            <a class="dropdown-item" href="/calculator/1/edit">Rechner Konfiguration</a>
                         </div>
                     </li>
 
