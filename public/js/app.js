@@ -1908,6 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./resources/js/store.js");
+/* harmony import */ var _CalculatorResult_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalculatorResult.vue */ "./resources/js/components/CalculatorResult.vue");
 //
 //
 //
@@ -1975,11 +1977,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Calculator",
   props: {
     calculator: {
       type: Object
+    }
+  },
+  data: function data() {
+    return {
+      state: _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].state,
+      entry: ''
+    };
+  },
+  components: {
+    CalculatorResult: _CalculatorResult_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    calculate: function calculate(entry, mwst, eurochf, atfaktor) {
+      if (entry !== '') {
+        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].setCalculatorData(mwst, eurochf, atfaktor);
+        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].calculate(entry);
+      }
     }
   }
 });
@@ -1995,6 +2016,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./resources/js/store.js");
+/* harmony import */ var _Calculator_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calculator.vue */ "./resources/js/components/Calculator.vue");
 //
 //
 //
@@ -2009,8 +2032,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "CalculatorResult"
+  name: "CalculatorResult",
+  data: function data() {
+    return {
+      state: _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].state
+    };
+  },
+  components: {
+    Calculator: _Calculator_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
 });
 
 /***/ }),
@@ -37591,193 +37626,189 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-xl-6" }, [
+    _c("h1", { staticClass: "h2 text-primary my-3" }, [
+      _vm._v("Tools: Preis-Rechner")
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "border border-secondary rounded-lg p-4 clearfix" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group row mt-4" }, [
+          _c(
+            "label",
+            { staticClass: "col-sm-3 col-form-label", attrs: { for: "netto" } },
+            [_vm._v("Betrag Netto")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.entry,
+                expression: "entry"
+              }
+            ],
+            staticClass: "form-control col-sm-9",
+            attrs: {
+              type: "text",
+              id: "netto",
+              name: "netto",
+              value: "",
+              autofocus: ""
+            },
+            domProps: { value: _vm.entry },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.entry = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mt-3 float-right",
+            attrs: { type: "submit" },
+            on: {
+              click: function($event) {
+                return _vm.calculate(
+                  _vm.entry,
+                  _vm.calculator.mwst,
+                  _vm.calculator.eurochf,
+                  _vm.calculator.atfaktor
+                )
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-calculator mr-1" }),
+            _vm._v(" Umrechnen\n        ")
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-6" }, [
-      _c("h1", { staticClass: "h2 text-primary my-3" }, [
-        _vm._v("Tools: Preis-Rechner")
-      ]),
-      _vm._v(" "),
-      _c("form", { attrs: { id: "calculator" } }, [
-        _c(
-          "fieldset",
-          { staticClass: "border border-secondary rounded-lg p-4" },
-          [
-            _c("div", [
-              _c("div", { staticClass: "mt-4" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("span", { staticClass: "col-form-label col-sm-3" }, [
-                    _vm._v("Währung")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-9" }, [
-                    _c("div", { staticClass: "form-check form-check-inline" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          type: "radio",
-                          name: "eurochf",
-                          id: "euro",
-                          value: "option1",
-                          checked: ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: "euro" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    Euro Nt. "
-                          ),
-                          _c("i", { staticClass: "fas fa-arrow-right" }),
-                          _vm._v(" CHF Br.\n                                ")
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-check form-check-inline ml-3" },
-                      [
-                        _c("input", {
-                          staticClass: "form-check-input",
-                          attrs: {
-                            type: "radio",
-                            name: "eurochf",
-                            id: "chf",
-                            value: "option2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-check-label",
-                            attrs: { for: "chf" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                    CHF Nt. "
-                            ),
-                            _c("i", { staticClass: "fas fa-arrow-right" }),
-                            _vm._v(" CHF Br.\n                                ")
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mt-4" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("span", { staticClass: "col-form-label col-sm-3" }, [
-                    _vm._v("Art")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-9" }, [
-                    _c("div", { staticClass: "form-check form-check-inline" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          type: "radio",
-                          name: "art",
-                          id: "et",
-                          value: "option1",
-                          checked: ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: "et" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    Ersatzteil\n                                "
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-check form-check-inline ml-3" },
-                      [
-                        _c("input", {
-                          staticClass: "form-check-input",
-                          attrs: {
-                            type: "radio",
-                            name: "art",
-                            id: "at",
-                            value: "option2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-check-label",
-                            attrs: { for: "at" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                    Gerät\n                                "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row mt-4" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-3 col-form-label",
-                    attrs: { for: "netto" }
-                  },
-                  [_vm._v("Betrag Netto")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control col-sm-9",
-                  attrs: {
-                    type: "text",
-                    id: "netto",
-                    name: "netto",
-                    autofocus: ""
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary mt-3 float-right",
-                  attrs: { type: "submit" }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-calculator mr-1" }),
-                  _vm._v(" Umrechnen\n                ")
-                ]
-              )
-            ])
-          ]
-        )
+    return _c("div", { staticClass: "mt-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("span", { staticClass: "col-form-label col-sm-3" }, [
+          _vm._v("Währung")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-9" }, [
+          _c("div", { staticClass: "form-check form-check-inline" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: {
+                type: "radio",
+                name: "eurochf",
+                id: "euro",
+                value: "option1",
+                checked: ""
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "euro" } },
+              [
+                _vm._v("\n                            Euro Nt. "),
+                _c("i", { staticClass: "fas fa-arrow-right" }),
+                _vm._v(" CHF Br.\n                        ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check form-check-inline ml-3" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: {
+                type: "radio",
+                name: "eurochf",
+                id: "chf",
+                value: "option2"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "chf" } },
+              [
+                _vm._v("\n                            CHF Nt. "),
+                _c("i", { staticClass: "fas fa-arrow-right" }),
+                _vm._v(" CHF Br.\n                        ")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("span", { staticClass: "col-form-label col-sm-3" }, [_vm._v("Art")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-9" }, [
+          _c("div", { staticClass: "form-check form-check-inline" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: {
+                type: "radio",
+                name: "art",
+                id: "et",
+                value: "option1",
+                checked: ""
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "et" } },
+              [
+                _vm._v(
+                  "\n                            Ersatzteil\n                        "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check form-check-inline ml-3" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: { type: "radio", name: "art", id: "at", value: "option2" }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "at" } },
+              [
+                _vm._v(
+                  "\n                            Gerät\n                        "
+                )
+              ]
+            )
+          ])
+        ])
       ])
     ])
   }
@@ -37803,28 +37834,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-4 offset-1" }, [
-      _c("h2", { staticClass: "h2 text-primary my-3" }, [_vm._v("Resultat")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _c("ul", { staticClass: "list-group list-group-flush" }, [
-          _c("li", { staticClass: "list-group-item" }, [_vm._v("Eingabe: ")]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [_vm._v("Resultat: ")])
+  return _c("div", { staticClass: "col-xl-4 offset-1" }, [
+    _c("h2", { staticClass: "h2 text-primary my-3" }, [_vm._v("Resultat")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("ul", { staticClass: "list-group list-group-flush" }, [
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("Eingabe: " + _vm._s(_vm.state.calculatorData[0].entry))
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("MwSt:  " + _vm._s(_vm.state.calculatorData[0].mwst))
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("Euro Chf:  " + _vm._s(_vm.state.calculatorData[0].eurochf))
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("AT-Faktor:  " + _vm._s(_vm.state.calculatorData[0].atfaktor))
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("AT-Faktor:  " + _vm._s(_vm.state.calculatorData[0].output))
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50365,6 +50403,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/data.js":
+/*!******************************!*\
+  !*** ./resources/js/data.js ***!
+  \******************************/
+/*! exports provided: calculatorData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculatorData", function() { return calculatorData; });
+/**
+ * Created by mstri on 01.07.2020.
+ */
+
+
+var calculatorData = [{
+  mwst: '',
+  eurochf: '',
+  atfaktor: '',
+  entry: '--',
+  output: '--'
+}];
+
+/***/ }),
+
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
+/*! exports provided: store */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony import */ var _data_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data.js */ "./resources/js/data.js");
+/**
+ * Created by mstri on 01.07.2020.
+ */
+
+
+
+var store = {
+  state: {
+    calculatorData: _data_js__WEBPACK_IMPORTED_MODULE_0__["calculatorData"]
+  },
+  setCalculatorData: function setCalculatorData(mwst, eurochf, atfaktor) {
+    this.state.calculatorData[0].mwst = mwst;
+    this.state.calculatorData[0].eurochf = eurochf;
+    this.state.calculatorData[0].atfaktor = atfaktor;
+  },
+  calculate: function calculate(entry) {
+    this.state.calculatorData[0].entry = entry;
+    this.state.calculatorData[0].output = entry * this.state.calculatorData[0].eurochf * 1.6;
+  }
+};
 
 /***/ }),
 
