@@ -1977,6 +1977,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1989,17 +1993,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       state: _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].state,
-      entry: ''
+      entry: '',
+      type: '',
+      currency: ''
     };
   },
   components: {
     CalculatorResult: _CalculatorResult_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
-    calculate: function calculate(entry, mwst, eurochf, atfaktor) {
-      if (entry !== '') {
-        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].setCalculatorData(mwst, eurochf, atfaktor);
-        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].calculate(entry);
+    calculate: function calculate(entry, mwst, eurochf, atfaktor, type, currency) {
+      if (entry !== '' && type !== '' && currency !== '') {
+        console.log(type);
+        console.log(currency);
+        console.log(entry);
+        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].setCalculatorData(entry, mwst, eurochf, atfaktor, type, currency);
+        _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].calculate();
+      } else {
+        alert("Bitte wähle sowohl eine Währung und eine Art aus. Fülle Ebenfall einen Netto-Preis ein.");
       }
     }
   }
@@ -2018,8 +2029,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./resources/js/store.js");
 /* harmony import */ var _Calculator_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calculator.vue */ "./resources/js/components/Calculator.vue");
-//
-//
 //
 //
 //
@@ -37628,16 +37637,166 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-xl-6" }, [
     _c("h1", { staticClass: "h2 text-primary my-3" }, [
-      _vm._v("Tools: Preis-Rechner")
+      _vm._v("Tools: Netto-Brutto Rechner")
     ]),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "border border-secondary rounded-lg p-4 clearfix" },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "mt-4" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("span", { staticClass: "col-form-label col-sm-3" }, [
+              _vm._v("Währung")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-9" }, [
+              _c("div", { staticClass: "form-check form-check-inline" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currency,
+                      expression: "currency"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: {
+                    type: "radio",
+                    name: "eurochf",
+                    id: "euro",
+                    value: "euro"
+                  },
+                  domProps: { checked: _vm._q(_vm.currency, "euro") },
+                  on: {
+                    change: function($event) {
+                      _vm.currency = "euro"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "euro" } },
+                  [
+                    _vm._v(
+                      "\n                            Euro\n                        "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check form-check-inline ml-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currency,
+                      expression: "currency"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: {
+                    type: "radio",
+                    name: "eurochf",
+                    id: "chf",
+                    value: "chf"
+                  },
+                  domProps: { checked: _vm._q(_vm.currency, "chf") },
+                  on: {
+                    change: function($event) {
+                      _vm.currency = "chf"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "chf" } },
+                  [
+                    _vm._v(
+                      "\n                            CHF\n                        "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "mt-4" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("span", { staticClass: "col-form-label col-sm-3" }, [
+              _vm._v("Art")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-9" }, [
+              _c("div", { staticClass: "form-check form-check-inline" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.type,
+                      expression: "type"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", name: "art", id: "et", value: "et" },
+                  domProps: { checked: _vm._q(_vm.type, "et") },
+                  on: {
+                    change: function($event) {
+                      _vm.type = "et"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "et" } },
+                  [
+                    _vm._v(
+                      "\n                            Ersatzteil\n                        "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check form-check-inline ml-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.type,
+                      expression: "type"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", name: "art", id: "at", value: "at" },
+                  domProps: { checked: _vm._q(_vm.type, "at") },
+                  on: {
+                    change: function($event) {
+                      _vm.type = "at"
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "at" } },
+                  [
+                    _vm._v(
+                      "\n                            Gerät\n                        "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group row mt-4" }, [
           _c(
@@ -37686,7 +37845,9 @@ var render = function() {
                   _vm.entry,
                   _vm.calculator.mwst,
                   _vm.calculator.eurochf,
-                  _vm.calculator.atfaktor
+                  _vm.calculator.atfaktor,
+                  _vm.type,
+                  _vm.currency
                 )
               }
             }
@@ -37700,119 +37861,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("span", { staticClass: "col-form-label col-sm-3" }, [
-          _vm._v("Währung")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-9" }, [
-          _c("div", { staticClass: "form-check form-check-inline" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: {
-                type: "radio",
-                name: "eurochf",
-                id: "euro",
-                value: "option1",
-                checked: ""
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "euro" } },
-              [
-                _vm._v("\n                            Euro Nt. "),
-                _c("i", { staticClass: "fas fa-arrow-right" }),
-                _vm._v(" CHF Br.\n                        ")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-check form-check-inline ml-3" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: {
-                type: "radio",
-                name: "eurochf",
-                id: "chf",
-                value: "option2"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "chf" } },
-              [
-                _vm._v("\n                            CHF Nt. "),
-                _c("i", { staticClass: "fas fa-arrow-right" }),
-                _vm._v(" CHF Br.\n                        ")
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("span", { staticClass: "col-form-label col-sm-3" }, [_vm._v("Art")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-9" }, [
-          _c("div", { staticClass: "form-check form-check-inline" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: {
-                type: "radio",
-                name: "art",
-                id: "et",
-                value: "option1",
-                checked: ""
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "et" } },
-              [
-                _vm._v(
-                  "\n                            Ersatzteil\n                        "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-check form-check-inline ml-3" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: { type: "radio", name: "art", id: "at", value: "option2" }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "at" } },
-              [
-                _vm._v(
-                  "\n                            Gerät\n                        "
-                )
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37834,33 +37883,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-xl-4 offset-1" }, [
-    _c("h2", { staticClass: "h2 text-primary my-3" }, [_vm._v("Resultat")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("ul", { staticClass: "list-group list-group-flush" }, [
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Eingabe: " + _vm._s(_vm.state.calculatorData[0].entry))
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("MwSt:  " + _vm._s(_vm.state.calculatorData[0].mwst))
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Euro Chf:  " + _vm._s(_vm.state.calculatorData[0].eurochf))
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("AT-Faktor:  " + _vm._s(_vm.state.calculatorData[0].atfaktor))
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("AT-Faktor:  " + _vm._s(_vm.state.calculatorData[0].output))
+  return _c(
+    "div",
+    { staticClass: "col-xl-4 offset-xl-1 col-md-6 offset-md-3" },
+    [
+      _c("h2", { staticClass: "h2 text-primary my-3" }, [_vm._v("Resultat")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("ul", { staticClass: "list-group list-group-flush" }, [
+          _c("li", { staticClass: "list-group-item" }, [
+            _vm._v("Eingabe: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm.state.calculatorData[0].entry) + " Euro Netto")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _vm._v("Zwischenergebnis:  "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm.state.calculatorData[0].chfNt) + " CHF Netto")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _vm._v("Ergebnis:  "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm.state.calculatorData[0].chfBr) + " CHF Brutto")
+            ])
+          ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50425,8 +50479,11 @@ var calculatorData = [{
   mwst: '',
   eurochf: '',
   atfaktor: '',
+  type: '',
+  currency: '',
   entry: '--',
-  output: '--'
+  chfNt: '--',
+  chfBr: '--'
 }];
 
 /***/ }),
@@ -50447,19 +50504,46 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+ // import $ from 'jquery';
 
 var store = {
   state: {
     calculatorData: _data_js__WEBPACK_IMPORTED_MODULE_0__["calculatorData"]
   },
-  setCalculatorData: function setCalculatorData(mwst, eurochf, atfaktor) {
+  setCalculatorData: function setCalculatorData(entry, mwst, eurochf, atfaktor, type, currency) {
     this.state.calculatorData[0].mwst = mwst;
     this.state.calculatorData[0].eurochf = eurochf;
     this.state.calculatorData[0].atfaktor = atfaktor;
-  },
-  calculate: function calculate(entry) {
     this.state.calculatorData[0].entry = entry;
-    this.state.calculatorData[0].output = entry * this.state.calculatorData[0].eurochf * 1.6;
+    this.state.calculatorData[0].type = type;
+    this.state.calculatorData[0].currency = currency;
+  },
+  calculate: function calculate() {
+    var mwst = this.state.calculatorData[0].mwst;
+    var eurochf = this.state.calculatorData[0].eurochf;
+    var atfaktor = this.state.calculatorData[0].atfaktor;
+    var type = this.state.calculatorData[0].type;
+    var currency = this.state.calculatorData[0].currency;
+    var entry = parseFloat(this.state.calculatorData[0].entry.replace(",", "."));
+    var chfNt = 0;
+    var chfBr = 0;
+
+    if (currency === "euro") {
+      chfNt = entry * eurochf;
+    } else if (currency === "chf") {
+      chfNt = entry;
+    }
+
+    if (chfNt > 0 && chfNt < 1) {
+      chfBr = 0;
+    } else if (chfNt >= 1 && chfNt < 100) {
+      chfBr = chfNt * mwst * 1.5;
+    } else if (chfNt >= 100) {
+      chfBr = chfNt * mwst * 1.25;
+    }
+
+    this.state.calculatorData[0].chfNt = Math.round(chfNt * 100) / 100;
+    this.state.calculatorData[0].chfBr = Math.round(chfBr * 100) / 100;
   }
 };
 

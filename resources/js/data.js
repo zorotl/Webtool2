@@ -7,6 +7,9 @@ export const calculatorData = [{
     mwst: '',
     eurochf: '',
     atfaktor: '',
+    type: '',
+    currency: '',
     entry: '--',
-    output: '--'
+    chfNt: '--',
+    chfBr: '--'
 }]

@@ -1,23 +1,25 @@
 <template>
     <div class="col-xl-6">
-        <h1 class="h2 text-primary my-3">Tools: Preis-Rechner</h1>
+        <h1 class="h2 text-primary my-3">Tools: Netto-Brutto Rechner</h1>
         <div class="border border-secondary rounded-lg p-4 clearfix">
             <div class="mt-4">
                 <div class="row">
                     <span class="col-form-label col-sm-3">Währung</span>
                     <div class="col-sm-9">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="eurochf" id="euro"
-                                   value="option1" checked>
+                            <input class="form-check-input" type="radio" name="eurochf" id="euro" value="euro"
+                                   v-model="currency"
+                            >
                             <label class="form-check-label" for="euro">
-                                Euro Nt. <i class="fas fa-arrow-right"></i> CHF Br.
+                                Euro
                             </label>
                         </div>
-                        <div class="form-check form-check-inline ml-3">
-                            <input class="form-check-input" type="radio" name="eurochf" id="chf"
-                                   value="option2">
+                        <div class="form-check form-check-inline ml-5">
+                            <input class="form-check-input" type="radio" name="eurochf" id="chf" value="chf"
+                                   v-model="currency"
+                            >
                             <label class="form-check-label" for="chf">
-                                CHF Nt. <i class="fas fa-arrow-right"></i> CHF Br.
+                                CHF
                             </label>
                         </div>
                     </div>
@@ -29,15 +31,17 @@
                     <span class="col-form-label col-sm-3">Art</span>
                     <div class="col-sm-9">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="art" id="et"
-                                   value="option1" checked>
+                            <input class="form-check-input" type="radio" name="art" id="et" value="et"
+                                   v-model="type"
+                            >
                             <label class="form-check-label" for="et">
                                 Ersatzteil
                             </label>
                         </div>
                         <div class="form-check form-check-inline ml-3">
-                            <input class="form-check-input" type="radio" name="art" id="at"
-                                   value="option2">
+                            <input class="form-check-input" type="radio" name="art" id="at" value="at"
+                                   v-model="type"
+                            >
                             <label class="form-check-label" for="at">
                                 Gerät
                             </label>
@@ -56,7 +60,7 @@
 
             <button class="btn btn-outline-primary mt-3 float-right"
                     type="submit"
-                    @click="calculate(entry, calculator.mwst, calculator.eurochf, calculator.atfaktor)"
+                    @click="calculate(entry, calculator.mwst, calculator.eurochf, calculator.atfaktor, type, currency)"
             >
                 <i class="fas fa-calculator mr-1"></i> Umrechnen
             </button>
@@ -79,17 +83,24 @@
         data() {
             return {
                 state: store.state,
-                entry: ''
+                entry: '',
+                type: '',
+                currency: '',
             }
         },
         components: {
             CalculatorResult
         },
         methods: {
-            calculate: function (entry, mwst, eurochf, atfaktor) {
-                if (entry !== '') {
-                    store.setCalculatorData(mwst, eurochf, atfaktor);
-                    store.calculate(entry);
+            calculate: function (entry, mwst, eurochf, atfaktor, type, currency) {
+                if (entry !== '' && type !== '' && currency !== '') {
+                    console.log(type);
+                    console.log(currency);
+                    console.log(entry);
+                    store.setCalculatorData(entry, mwst, eurochf, atfaktor, type, currency);
+                    store.calculate();
+                } else {
+                    alert("Bitte wähle sowohl eine Währung und eine Art aus. Fülle Ebenfall einen Netto-Preis ein.")
                 }
             }
         }
