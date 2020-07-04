@@ -48,8 +48,6 @@ export const store = {
             chfBr = chfNt * mwst * atfaktor;
         }
 
-
-
         this.state.calculatorData[0].chfNt = Math.round(chfNt * 100) / 100;
         this.state.calculatorData[0].chfBr = Math.round(chfBr * 100) / 100;
     },

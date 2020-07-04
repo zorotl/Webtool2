@@ -96,9 +96,6 @@
         methods: {
             calculate: function (entry, mwst, eurochf, atfaktor, type, currency) {
                 if (entry !== '' && type !== '' && currency !== '') {
-                    console.log(type);
-                    console.log(currency);
-                    console.log(entry);
                     store.setCalculatorData(entry, mwst, eurochf, atfaktor, type, currency);
                     store.calculate();
                 } else {

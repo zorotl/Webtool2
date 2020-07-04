@@ -2006,9 +2006,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     calculate: function calculate(entry, mwst, eurochf, atfaktor, type, currency) {
       if (entry !== '' && type !== '' && currency !== '') {
-        console.log(type);
-        console.log(currency);
-        console.log(entry);
         _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].setCalculatorData(entry, mwst, eurochf, atfaktor, type, currency);
         _store_js__WEBPACK_IMPORTED_MODULE_0__["store"].calculate();
       } else {
@@ -2060,6 +2057,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2078,6 +2082,25 @@ __webpack_require__.r(__webpack_exports__);
     },
     isET: function isET() {
       return this.state.calculatorData[0].type === 'et';
+    }
+  },
+  methods: {
+    copyResult: function copyResult() {
+      var result = document.querySelector('#result');
+      result.setAttribute('type', 'text');
+      result.select();
+
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful'; // alert('Testing code was copied ' + msg);
+      } catch (err) {
+        alert('Fehler beim Kopieren!');
+      }
+      /* unselect the range */
+
+
+      result.setAttribute('type', 'hidden');
+      window.getSelection().removeAllRanges();
     }
   }
 });
@@ -37972,10 +37995,34 @@ var render = function() {
               : _c("span", [_vm._v("Austausch-Preis")]),
             _vm._v(" "),
             _c("span", { staticClass: "float-right" }, [
-              _vm._v(_vm._s(_vm.state.calculatorData[0].chfBr) + " CHF Brutto")
+              _vm._v(_vm._s(_vm.state.calculatorData[0].chfBr) + " CHF Brutto ")
             ])
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden", id: "result" },
+          domProps: { value: _vm.state.calculatorData[0].chfBr }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mt-1",
+            attrs: { type: "submit" },
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                $event.preventDefault()
+                return _vm.copyResult($event)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-copy mr-1" }),
+            _vm._v(" Ergebnis kopieren\n            ")
+          ]
+        )
       ])
     ])
   ])

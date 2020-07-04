@@ -18,9 +18,16 @@
                     <li class="list-group-item">
                         <span v-if="isET">Ersatzteil-Preis</span>
                         <span v-else>Austausch-Preis</span>
-                        <span class="float-right">{{ state.calculatorData[0].chfBr }} CHF Brutto</span>
+                        <span class="float-right">{{ state.calculatorData[0].chfBr }} CHF Brutto </span>
                     </li>
                 </ul>
+                <input type="hidden" id="result" :value="state.calculatorData[0].chfBr">
+                <button class="btn btn-outline-primary mt-1"
+                        type="submit"
+                        @click.stop.prevent="copyResult"
+                >
+                    <i class="fas fa-copy mr-1"></i> Ergebnis kopieren
+                </button>
             </div>
         </div>
     </div>
@@ -48,6 +55,25 @@
             isET() {
                 return this.state.calculatorData[0].type === 'et';
             }
+        },
+        methods: {
+            copyResult () {
+                let result = document.querySelector('#result');
+                result.setAttribute('type', 'text');
+                result.select();
+
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    // alert('Testing code was copied ' + msg);
+                } catch (err) {
+                    alert('Fehler beim Kopieren!');
+                }
+
+                /* unselect the range */
+                result.setAttribute('type', 'hidden')
+                window.getSelection().removeAllRanges()
+            },
         },
     }
 
