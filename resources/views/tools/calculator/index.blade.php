@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+{{--        <div class="row">--}}
             <calculator :calculator="{{ $calculator }}"></calculator>
             <calculator-result></calculator-result>
-        </div>
+{{--        </div>--}}
     </div>
 @endsection
