@@ -1,0 +1,23 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <JSCodeStyleSettings version="0">
+      <option name="FUNCTION_EXPRESSION_BRACE_STYLE" value="2" />
+    </JSCodeStyleSettings>
+    <PHPCodeStyleSettings>
+      <option name="NAMESPACE_BRACE_STYLE" value="2" />
+    </PHPCodeStyleSettings>
+    <codeStyleSettings language="JavaScript">
+      <option name="BRACE_STYLE" value="2" />
+      <option name="CLASS_BRACE_STYLE" value="2" />
+      <option name="METHOD_BRACE_STYLE" value="2" />
+      <option name="ELSE_ON_NEW_LINE" value="true" />
+      <option name="WHILE_ON_NEW_LINE" value="true" />
+    </codeStyleSettings>
+    <codeStyleSettings language="PHP">
+      <option name="BRACE_STYLE" value="2" />
+      <option name="LAMBDA_BRACE_STYLE" value="2" />
+      <option name="ELSE_ON_NEW_LINE" value="true" />
+      <option name="WHILE_ON_NEW_LINE" value="true" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
