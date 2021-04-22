@@ -53,20 +53,19 @@
                         </div>
                     </li>
 
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('shop*') ? 'active' : '' }}"
-                           href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Shop
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown02">
-                            <a class="dropdown-item" href="#">Suche</a>
-                            <a class="dropdown-item" href="#">Bestellungen</a>
-                            <a class="dropdown-item" href="#">Verwaltung</a>
-                            <a class="dropdown-item" href="#">Statistik</a>
-                            <a class="dropdown-item" href="#">History</a>
-                        </div>
-                    </li>
+{{--                    <li class="nav-item dropdown">--}}
+{{--                        <a class="nav-link dropdown-toggle {{ Request::is('shop*') ? 'active' : '' }}"--}}
+{{--                           href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            Shop--}}
+{{--                        </a>--}}
+{{--                        <div class="dropdown-menu" aria-labelledby="dropdown02">--}}
+{{--                            <a class="dropdown-item" href="#">Suche</a>--}}
+{{--                            <a class="dropdown-item" href="#">Bestellungen</a>--}}
+{{--                            <a class="dropdown-item" href="#">Verwaltung</a>--}}
+{{--                            <a class="dropdown-item" href="#">Statistik</a>--}}
+{{--                            <a class="dropdown-item" href="#">History</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('calculator*') ? 'active' : '' }}"
