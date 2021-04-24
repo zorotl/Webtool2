@@ -160,12 +160,22 @@
         <!-- Footer -->
         <footer class="footer mt-auto py-3 bg-primary text-white text-center">
             <ul class="list-inline">
-                <li class="list-inline-item pr-3"><a class="text-white" href="#">info@stws.ch</a></li>
-                <li class="list-inline-item pr-3"><a class="text-white" href="#">Impressum</a></li>
-                <li class="list-inline-item pr-3"><a class="text-white" href="#">Datenschutz</a></li>
+                <li class="list-inline-item pr-3">
+                    <a class="text-white"
+                       href="mailto:info@stws.ch?subject=Anfrage%20von%20webtools.stws.ch">info@stws.ch</a>
+                </li>
+                <li class="list-inline-item pr-3">
+                    <a class="text-white" href="#" data-toggle="modal" data-target="#modalImpressum">Impressum</a>
+                </li>
+                <li class="list-inline-item pr-3">
+                    <a class="text-white" href="#" data-toggle="modal" data-target="#modalDatenschutz">Datenschutz</a>
+                </li>
                 <li class="list-inline-item">&copy; 2020 Webtools</li>
             </ul>
         </footer>
+
+        @include('impressum')
+        @include('datenschutz')
         <!-- End Footer -->
 
     </div>
