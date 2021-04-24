@@ -177,7 +177,6 @@
         @include('impressum')
         @include('datenschutz')
         <!-- End Footer -->
-
     </div>
 </body>
 </html>
