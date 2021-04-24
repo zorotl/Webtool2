@@ -28,7 +28,8 @@
                 <i class="fas fa-warehouse"></i>
                 {{ config('app.name', 'Laravel') }}
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -36,7 +37,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
+                        <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -45,11 +46,11 @@
                             Lager
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="/item">Artikel anzeigen</a>
-                            <a class="dropdown-item" href="/warehouse">Lager</a>
-                            <a class="dropdown-item" href="/brand">Marken</a>
-                            <a class="dropdown-item" href="/itemType">Artikel-Arten</a>
-                            <a class="dropdown-item" href="/itemCondition">Artikel-Zustände</a>
+                            <a class="dropdown-item" href="{{ route('item.index') }}">Artikel anzeigen</a>
+                            <a class="dropdown-item" href="{{ route('warehouse.index') }}">Lager</a>
+                            <a class="dropdown-item" href="{{ route('brand.index') }}">Marken</a>
+                            <a class="dropdown-item" href="{{ route('itemType.index') }}">Artikel-Arten</a>
+                            <a class="dropdown-item" href="{{ route('itemCondition.index') }}">Artikel-Zustände</a>
                         </div>
                     </li>
 
@@ -73,8 +74,8 @@
                             Tools
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
-                            <a class="dropdown-item" href="/calculator">Rechner</a>
-                            <a class="dropdown-item" href="/calculator/1/edit">Rechner Konfiguration</a>
+                            <a class="dropdown-item" href="{{ route('calculator.index') }}">Rechner</a>
+                            <a class="dropdown-item" href="{{ route('calculator.edit', '1') }}">Rechner Konfiguration</a>
                         </div>
                     </li>
 
