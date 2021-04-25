@@ -89,7 +89,7 @@
                             <a class="dropdown-item" href="#">Link 1</a>
                             <a class="dropdown-item" href="#">Link 2</a>
                             <a class="dropdown-item" href="#">Link 3</a>
-                            <a class="dropdown-item" href="#">Links bearbeiten</a>
+                            <a class="dropdown-item" href="{{ route('link.index') }}">Links bearbeiten</a>
                         </div>
                     </li>
 
