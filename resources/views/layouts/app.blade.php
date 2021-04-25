@@ -71,17 +71,26 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('calculator*') ? 'active' : '' }}"
                            href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Tools
+                            Rechner
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
                             <a class="dropdown-item" href="{{ route('calculator.index') }}">Rechner</a>
-                            <a class="dropdown-item" href="{{ route('calculator.edit', '1') }}">Rechner Konfiguration</a>
+                            <a class="dropdown-item" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
                         </div>
                     </li>
 
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('links*') ? 'active' : '' }}" href="#">Links</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Request::is('links*') ? 'active' : '' }}"
+                           href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown05">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                            <a class="dropdown-item" href="#">Links bearbeiten</a>
+                        </div>
                     </li>
 
 {{--                    <li class="nav-item dropdown">--}}
