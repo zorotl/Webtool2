@@ -11,6 +11,7 @@ use App\ItemCondition;
 use App\ItemType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\Types\Void_;
 
 class ItemController extends Controller
 {
@@ -24,12 +25,13 @@ class ItemController extends Controller
         $msg_success = Session::get('msg_success');
         $items = Item::all();
         $warehouses = Warehouse::all();
-
+        $oldWarehouse = "0";
 
         return view('warehouse.item.index')->with(
             [
                 'items' => $items,
                 'warehouses' => $warehouses,
+                'oldWarehouse' => $oldWarehouse,
                 'msg_success' => $msg_success
             ]
         );
@@ -42,17 +44,23 @@ class ItemController extends Controller
      */
     public function search(Request $request)
     {
-        $msg_success = Session::get('msg_success');
-        $items = Item::where('warehouse_id', $request->lager)->get();
-        $warehouses = Warehouse::all();
+        if ($request->lager === "0") {
+            return $this->index();
+        } else {
+            $msg_success = Session::get('msg_success');
+            $items = Item::where('warehouse_id', $request->lager)->get();
+            $warehouses = Warehouse::all();
+            $oldWarehouse = $request->lager;
 
-        return view('warehouse.item.result')->with(
-            [
-                'items' => $items,
-                'warehouses' => $warehouses,
-                'msg_success' => $msg_success
-            ]
-        );
+            return view('warehouse.item.result')->with(
+                [
+                    'items' => $items,
+                    'warehouses' => $warehouses,
+                    'oldWarehouse' => $oldWarehouse,
+                    'msg_success' => $msg_success
+                ]
+            );
+        }
     }
 
     /**

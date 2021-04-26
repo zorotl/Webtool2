@@ -6,7 +6,9 @@
     <div class="container-fluid">
 
         <div class="my-3 clearfix">
-            <h1 class="h2 text-primary  d-inline">Lager: Alle Artikel anzeigen</h1>
+            <h1 class="h2 text-primary  d-inline">
+                {{ $items->count() }} Artikel vom <b>{{ $items[1]->storagePlace->storageLocation->warehouse->lager }}</b> werden anzeigen
+            </h1>
 
             <div class="float-right">
                 <button id="itemSearch" class="btn btn-outline-primary"><i class="fas fa-search mr-2"></i> Artikel suchen</button>
