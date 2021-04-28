@@ -25,13 +25,21 @@ class ItemController extends Controller
         $msg_success = Session::get('msg_success');
         $items = Item::all();
         $warehouses = Warehouse::all();
+        $storageLocation = StorageLocation::all();
+        $storagePlace = StoragePlace::all();
         $oldWarehouse = "0";
+        $oldStorageLocation = "0";
+        $oldStoragePlace = "0";
 
         return view('warehouse.item.index')->with(
             [
                 'items' => $items,
                 'warehouses' => $warehouses,
+                'storageLocation' => $storageLocation,
+                'storagePlace' => $storagePlace,
                 'oldWarehouse' => $oldWarehouse,
+                'oldStorageLocation' => $oldStorageLocation,
+                'oldStoragePlace' => $oldStoragePlace,
                 'msg_success' => $msg_success
             ]
         );
@@ -46,17 +54,76 @@ class ItemController extends Controller
     {
         if ($request->lager === "0") {
             return $this->index();
-        } else {
+        } elseif ($request->lagerort === "0") {
             $msg_success = Session::get('msg_success');
             $items = Item::where('warehouse_id', $request->lager)->get();
             $warehouses = Warehouse::all();
+            $storageLocation = StorageLocation::all();
+            $storagePlace = StoragePlace::all();
             $oldWarehouse = $request->lager;
+            $oldStorageLocation = "0";
+            $oldStoragePlace = "0";
 
-            return view('warehouse.item.result')->with(
+            return view('warehouse.item.index')->with(
                 [
                     'items' => $items,
                     'warehouses' => $warehouses,
+                    'storageLocation' => $storageLocation,
+                    'storagePlace' => $storagePlace,
                     'oldWarehouse' => $oldWarehouse,
+                    'oldStorageLocation' => $oldStorageLocation,
+                    'oldStoragePlace' => $oldStoragePlace,
+                    'msg_success' => $msg_success
+                ]
+            );
+        } elseif ($request->lagerplatz === "0") {
+            $msg_success = Session::get('msg_success');
+            $items = Item::where('warehouse_id', $request->lager)
+                ->where('storage_location_id', $request->lagerort)
+                ->get();
+            $warehouses = Warehouse::all();
+            $storageLocation = StorageLocation::all();
+            $storagePlace = StoragePlace::all();
+            $oldWarehouse = $request->lager;
+            $oldStorageLocation = $request->lagerort;
+            $oldStoragePlace = "0";
+
+
+            return view('warehouse.item.index')->with(
+                [
+                    'items' => $items,
+                    'warehouses' => $warehouses,
+                    'storageLocation' => $storageLocation,
+                    'storagePlace' => $storagePlace,
+                    'oldWarehouse' => $oldWarehouse,
+                    'oldStorageLocation' => $oldStorageLocation,
+                    'oldStoragePlace' => $oldStoragePlace,
+                    'msg_success' => $msg_success
+                ]
+            );
+        } else {
+            $msg_success = Session::get('msg_success');
+            $items = Item::where('warehouse_id', $request->lager)
+                ->where('storage_location_id', $request->lagerort)
+                ->where('storage_place_id', $request->lagerplatz)
+                ->get();
+            $warehouses = Warehouse::all();
+            $storageLocation = StorageLocation::all();
+            $storagePlace = StoragePlace::all();
+            $oldWarehouse = $request->lager;
+            $oldStorageLocation = $request->lagerort;
+            $oldStoragePlace = $request->lagerplatz;
+
+
+            return view('warehouse.item.index')->with(
+                [
+                    'items' => $items,
+                    'warehouses' => $warehouses,
+                    'storageLocation' => $storageLocation,
+                    'storagePlace' => $storagePlace,
+                    'oldWarehouse' => $oldWarehouse,
+                    'oldStorageLocation' => $oldStorageLocation,
+                    'oldStoragePlace' => $oldStoragePlace,
                     'msg_success' => $msg_success
                 ]
             );

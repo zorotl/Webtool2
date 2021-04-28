@@ -7,7 +7,17 @@
 
         <div class="my-3 clearfix">
             <h1 class="h2 text-primary  d-inline">
-                {{ $items->count() }} Artikel vom <b>{{ $items[1]->storagePlace->storageLocation->warehouse->lager }}</b> werden anzeigen
+                {{ $items->count() }} Artikel vom
+                <b>
+                    @if($oldStoragePlace !== "0" )
+                        {{ $items[1]->storagePlace->lagerplatz }}
+                    @elseif($oldStorageLocation !== "0")
+                        {{ $items[1]->storagePlace->storageLocation->lagerort }}
+                    @elseif($oldWarehouse !== "0")
+                        {{ $items[1]->storagePlace->storageLocation->warehouse->lager }}
+                    @endif
+                </b>
+                werden anzeigen
             </h1>
 
             <div class="float-right">
