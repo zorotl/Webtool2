@@ -6,21 +6,28 @@
     <div class="container-fluid">
 
         <div class="my-3 clearfix">
-            <h1 class="h2 text-primary  d-inline">
-                {{ $items->count() }} Artikel vom
-                <b>
-                    @if($oldStoragePlace !== "0" )
-                        {{ $items[1]->storagePlace->lagerplatz }}
-                    @elseif($oldStorageLocation !== "0")
-                        {{ $items[1]->storagePlace->storageLocation->lagerort }}
-                    @elseif($oldWarehouse !== "0")
-                        {{ $items[1]->storagePlace->storageLocation->warehouse->lager }}
-                    @else
-                        Lager
-                    @endif
-                </b>
-                werden anzeigen
-            </h1>
+            @if(!isset($items[1]))
+                <h1 class="h2 text-primary  d-inline">Keine Ersatzteile gefunden</h1>
+            @elseif($oldWarehouse === "0")
+                <h1 class="h2 text-primary  d-inline">Alle {{ $items->count() }} Artikel werden angezeigt</h1>
+            @else
+                <h1 class="h2 text-primary  d-inline">
+                    {{ $items->count() }} Artikel vom
+                    <b>
+                        @if($oldStoragePlace !== "0" )
+                            {{ $items[1]->storagePlace->lagerplatz }}
+                        @elseif($oldStorageLocation !== "0")
+                            {{ $items[1]->storagePlace->storageLocation->lagerort }}
+                        @elseif($oldWarehouse !== "0")
+                            {{ $items[1]->storagePlace->storageLocation->warehouse->lager }}
+                        @else
+                            ERROR-0001
+                        @endif
+                    </b>
+                    werden anzeigen
+                </h1>
+            @endif
+
             <div class="float-right">
                 <button id="itemSearch" class="btn btn-outline-primary"><i class="fas fa-search mr-2"></i> Artikel suchen</button>
                 <a class="btn btn-outline-primary ml-2" href="/item/create">

@@ -49,6 +49,11 @@
         <button class="btn btn-primary mt-4" type="submit">
             <i class="fas fa-search"></i> Suchen
         </button>
+
+        <a class="btn btn-secondary mt-4 float-lg-right" href="/item">
+            <i class="fas fa-undo mr-2"></i>
+            Filter löschen
+        </a>
     </fieldset>
 </form>
 

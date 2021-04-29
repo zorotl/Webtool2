@@ -22,14 +22,55 @@ class ItemController extends Controller
      */
     public function index()
     {
+        return $this->returnViewIndex(Item::all(),"0","0","0");
+    }
+
+    /**
+     * Show the form for searching a resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
+        if ($request->lager === "0" && $request->lagerort === "0" && $request->lagerplatz === "0") {
+            return $this->index();
+
+        } elseif ($request->lagerort === "0" && $request->lagerplatz === "0") {
+            return $this->returnViewIndex(
+                Item::where('warehouse_id', $request->lager)->get(),
+                $request->lager,
+                "0",
+                "0"
+            );
+
+        } elseif ($request->lagerplatz === "0") {
+            return $this->returnViewIndex(
+                Item::where('storage_location_id', $request->lagerort)->get(),
+                $request->lager,
+                $request->lagerort,
+                "0"
+            );
+
+        } else {
+            return $this->returnViewIndex(
+                Item::where('storage_place_id', $request->lagerplatz)->get(),
+                $request->lager,
+                $request->lagerort,
+                $request->lagerplatz
+            );
+        }
+    }
+
+    protected function returnViewIndex($itemQuery ,$oldWH, $oldSL, $oldSP)
+    {
         $msg_success = Session::get('msg_success');
-        $items = Item::all();
+        $items = $itemQuery;
         $warehouses = Warehouse::all();
         $storageLocation = StorageLocation::all();
         $storagePlace = StoragePlace::all();
-        $oldWarehouse = "0";
-        $oldStorageLocation = "0";
-        $oldStoragePlace = "0";
+        $oldWarehouse = $oldWH;
+        $oldStorageLocation = $oldSL;
+        $oldStoragePlace = $oldSP;
 
         return view('warehouse.item.index')->with(
             [
@@ -43,91 +84,6 @@ class ItemController extends Controller
                 'msg_success' => $msg_success
             ]
         );
-    }
-
-    /**
-     * Show the form for searching a resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function search(Request $request)
-    {
-        if ($request->lager === "0") {
-            return $this->index();
-        } elseif ($request->lagerort === "0") {
-            $msg_success = Session::get('msg_success');
-            $items = Item::where('warehouse_id', $request->lager)->get();
-            $warehouses = Warehouse::all();
-            $storageLocation = StorageLocation::all();
-            $storagePlace = StoragePlace::all();
-            $oldWarehouse = $request->lager;
-            $oldStorageLocation = "0";
-            $oldStoragePlace = "0";
-
-            return view('warehouse.item.index')->with(
-                [
-                    'items' => $items,
-                    'warehouses' => $warehouses,
-                    'storageLocation' => $storageLocation,
-                    'storagePlace' => $storagePlace,
-                    'oldWarehouse' => $oldWarehouse,
-                    'oldStorageLocation' => $oldStorageLocation,
-                    'oldStoragePlace' => $oldStoragePlace,
-                    'msg_success' => $msg_success
-                ]
-            );
-        } elseif ($request->lagerplatz === "0") {
-            $msg_success = Session::get('msg_success');
-            $items = Item::where('warehouse_id', $request->lager)
-                ->where('storage_location_id', $request->lagerort)
-                ->get();
-            $warehouses = Warehouse::all();
-            $storageLocation = StorageLocation::all();
-            $storagePlace = StoragePlace::all();
-            $oldWarehouse = $request->lager;
-            $oldStorageLocation = $request->lagerort;
-            $oldStoragePlace = "0";
-
-
-            return view('warehouse.item.index')->with(
-                [
-                    'items' => $items,
-                    'warehouses' => $warehouses,
-                    'storageLocation' => $storageLocation,
-                    'storagePlace' => $storagePlace,
-                    'oldWarehouse' => $oldWarehouse,
-                    'oldStorageLocation' => $oldStorageLocation,
-                    'oldStoragePlace' => $oldStoragePlace,
-                    'msg_success' => $msg_success
-                ]
-            );
-        } else {
-            $msg_success = Session::get('msg_success');
-            $items = Item::where('warehouse_id', $request->lager)
-                ->where('storage_location_id', $request->lagerort)
-                ->where('storage_place_id', $request->lagerplatz)
-                ->get();
-            $warehouses = Warehouse::all();
-            $storageLocation = StorageLocation::all();
-            $storagePlace = StoragePlace::all();
-            $oldWarehouse = $request->lager;
-            $oldStorageLocation = $request->lagerort;
-            $oldStoragePlace = $request->lagerplatz;
-
-
-            return view('warehouse.item.index')->with(
-                [
-                    'items' => $items,
-                    'warehouses' => $warehouses,
-                    'storageLocation' => $storageLocation,
-                    'storagePlace' => $storagePlace,
-                    'oldWarehouse' => $oldWarehouse,
-                    'oldStorageLocation' => $oldStorageLocation,
-                    'oldStoragePlace' => $oldStoragePlace,
-                    'msg_success' => $msg_success
-                ]
-            );
-        }
     }
 
     /**
