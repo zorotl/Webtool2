@@ -53,10 +53,10 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
                                 <a class="dropdown-item" href="{{ route('item.index') }}">Artikel anzeigen</a>
                                 <a class="dropdown-item" href="{{ route('item.create') }}">Artikel hinzufügen</a>
-                                <a class="dropdown-item" href="{{ route('warehouse.index') }}">Lager</a>
-                                <a class="dropdown-item" href="{{ route('brand.index') }}">Marken</a>
-                                <a class="dropdown-item" href="{{ route('itemType.index') }}">Artikel-Arten</a>
-                                <a class="dropdown-item" href="{{ route('itemCondition.index') }}">Artikel-Zustände</a>
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('warehouse.index') }}">Lager</a>
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('brand.index') }}">Marken</a>
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('itemType.index') }}">Artikel-Arten</a>
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('itemCondition.index') }}">Artikel-Zustände</a>
                             </div>
                         </li>
 
@@ -81,7 +81,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
                                 <a class="dropdown-item" href="{{ route('calculator.index') }}">Rechner</a>
-                                <a class="dropdown-item" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
+                                <a class="dropdown-item bg-primary text-white" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
                             </div>
                         </li>
 
@@ -94,7 +94,9 @@
                                 @foreach($links_nav as $link_nav)
                                     <a class="dropdown-item" target="_blank" href="{{ $link_nav->link_url }}">{{ $link_nav->link_name }}</a>
                                 @endforeach
-                                <a class="dropdown-item" href="{{ route('link.index') }}">Links bearbeiten</a>
+                                @auth
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('link.index') }}">Links bearbeiten</a>
+                                @endauth
                             </div>
                         </li>
 
