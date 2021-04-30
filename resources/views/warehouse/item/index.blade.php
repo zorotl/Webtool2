@@ -8,24 +8,31 @@
         <div class="my-3 clearfix">
             @if(!isset($items[1]))
                 <h1 class="h2 text-primary  d-inline">Keine Ersatzteile gefunden</h1>
-            @elseif($oldWarehouse === "0")
+
+            @elseif($oldWarehouse === "0" && $oldStorageLocation === "0" && $oldStoragePlace === "0")
                 <h1 class="h2 text-primary  d-inline">Alle {{ $items->count() }} Artikel werden angezeigt</h1>
+
+            @elseif($oldStorageLocation === "0" && $oldStoragePlace === "0")
+                <h1 class="h2 text-primary  d-inline">
+                    {{ $items->count() }} Artikel vom
+                    <b>{{ $items[1]->storagePlace->storageLocation->warehouse->lager }}</b>
+                    werden anzeigen
+                </h1>
+
+            @elseif($oldStoragePlace === "0")
+                <h1 class="h2 text-primary  d-inline">
+                    {{ $items->count() }} Artikel vom
+                    <b>{{ $items[1]->storagePlace->storageLocation->lagerort }}</b>
+                    werden anzeigen
+                </h1>
+
             @else
                 <h1 class="h2 text-primary  d-inline">
                     {{ $items->count() }} Artikel vom
-                    <b>
-                        @if($oldStoragePlace !== "0" )
-                            {{ $items[1]->storagePlace->lagerplatz }}
-                        @elseif($oldStorageLocation !== "0")
-                            {{ $items[1]->storagePlace->storageLocation->lagerort }}
-                        @elseif($oldWarehouse !== "0")
-                            {{ $items[1]->storagePlace->storageLocation->warehouse->lager }}
-                        @else
-                            ERROR-0001
-                        @endif
-                    </b>
+                    <b>{{ $items[1]->storagePlace->lagerplatz }}</b>
                     werden anzeigen
                 </h1>
+                
             @endif
 
             <div class="float-right">
