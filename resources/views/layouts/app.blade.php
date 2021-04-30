@@ -183,7 +183,7 @@
                 <li class="list-inline-item pr-3">
                     <a class="text-white" href="#" data-toggle="modal" data-target="#modalDatenschutz">Datenschutz</a>
                 </li>
-                <li class="list-inline-item">&copy; 2020 Webtools</li>
+                <li class="list-inline-item">&copy; 2021 Webtools</li>
             </ul>
         </footer>
 

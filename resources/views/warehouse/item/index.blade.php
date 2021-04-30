@@ -32,7 +32,7 @@
                     <b>{{ $items[1]->storagePlace->lagerplatz }}</b>
                     werden anzeigen
                 </h1>
-                
+
             @endif
 
             <div class="float-right">
