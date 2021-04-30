@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Session;
 
 class CalculatorController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index']);
+    }
+
     /**
      * Display the calculator-tool.
      *
