@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <h1 class="h2 text-primary my-3">Tools: Preis-Rechner Konfiguration</h1>
+                <h1 class="h2 text-primary my-3">Preis-Rechner Konfiguration</h1>
                 <form action="/calculator/{{ $calculator->id }}" method="post">
                     <fieldset class="border border-secondary rounded-lg p-4">
                         @csrf

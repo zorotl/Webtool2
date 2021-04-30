@@ -36,7 +36,10 @@
             @endif
 
             <div class="float-right">
-                <button id="itemSearch" class="btn btn-outline-primary"><i class="fas fa-search mr-2"></i> Artikel suchen</button>
+{{--                <button class="btn btn-outline-primary" id="headingSearch" type="button" data-toggle="collapse"--}}
+{{--                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">--}}
+{{--                    <i class="fas fa-search mr-2"></i>Suche ein-/ausblenden--}}
+{{--                </button>--}}
                 <a class="btn btn-outline-primary ml-2" href="/item/create">
                     <i class="fas fa-plus-circle mr-2"></i> Neuen Artikel hinzufügen
                 </a>
@@ -47,7 +50,7 @@
             @include('warehouse.item.search')
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-4">
             <div class="col-12">
                 <table class="table table-sm table-striped">
                     <thead>

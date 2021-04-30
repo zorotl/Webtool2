@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-xl-6 col-md-8">
-            <h1 class="h2 text-primary my-3">Tools: Netto-Brutto Rechner</h1>
+            <h1 class="h2 text-primary my-3">Preis-Rechner</h1>
             <div class="border border-secondary rounded-lg p-3 clearfix">
                 <div class="mt-2">
                     <div class="row">
@@ -29,7 +29,7 @@
 
                 <div class="mt-3">
                     <div class="row">
-                        <span class="col-form-label col-sm-3">Art</span>
+                        <span class="col-form-label col-sm-3">Umrechnungs-Art</span>
                         <div class="col-sm-9">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="art" id="et" value="et"
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group row mt-3">
-                    <label class="col-sm-3 col-form-label" for="netto">Betrag Netto</label>
+                    <label class="col-sm-3 col-form-label" for="netto">Netto-Preis</label>
                     <input type="text" class="form-control form-control-sm col-sm-8"
                            id="netto" name="netto" value="" autofocus
                            v-model="entry"

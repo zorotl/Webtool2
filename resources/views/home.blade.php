@@ -10,9 +10,8 @@
             </div>
         @endif
 
-
-        <h1 class="text-primary">Home</h1>
-        <h2 class="h3 text-primary my-4">Web-Tools, die den Alltag erleichtern!</h2>
+        <h1 class="text-primary my-4">Webtools, die den Alltag erleichtern</h1>
+{{--        <h2 class="h3 text-primary my-4">Webtools, die den Alltag erleichtern</h2>--}}
 
 {{--        <div class="row">--}}
 {{--            <div class="col-md-12">--}}
@@ -40,15 +39,13 @@
                     <div class="card-body">
                         <h3 class="card-title text-primary">Lager-Verwaltung</h3>
                         <p class="card-text">
-                            Das Tool "Lager-Verwaltung" ist genau das, was der Name verspricht.<br><br>
-                            Verwalten Sie ihre Artikel in einem mehrstufigen Lagersystem,
-                            damit Sie stets den Überblick behalten. Organisieren Sie ihre Artikel
-                            (z.B. neue Artikel, Geräte oder Ersatzteile) in verschiedene Lager-Gruppen,
-                            in denen sich wiederum diverse Lager und Lagerort befinden.<br><br>
+                            Die Lager-Verwaltung ist, was der Name verspricht.<br><br>
+                            Verwalten Sie ihre Artikel in einem mehrstufigen Lagersystem.
+                            Organisieren Sie ihre Artikel in verschiedenen Lagern, Lagerorten und Lagerplätzen.<br><br>
                             So behalten Sie stehts die Übersicht.
                         </p>
-                        <a href="#" class="btn btn-primary">Artikel im Lager suchen</a>
-                        <a href="{{ route('item.create') }}" class="btn btn-primary ml-3">Artikel im Lager hinzufügen</a>
+                        <a href="{{ route('item.index') }}" class="btn btn-primary">Artikel anzeigen</a>
+                        <a href="{{ route('item.create') }}" class="btn btn-primary ml-3">Artikel hinzufügen</a>
                     </div>
                 </div>
             </div>
@@ -71,13 +68,13 @@
             <div class="col-md-6 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-primary">Netto-Brutto Rechner</h3>
+                        <h3 class="card-title text-primary">Preis-Rechner</h3>
                         <p class="card-text">
-                            Das Tool "Netto-Brutto Rechner" ist ein nützlicher Helfer im Alltag, der Fehler beim
-                            Umrechnen von Preisen vermindert.<br><br>
+                            Der Preis-Rechner ist ein nützlicher Helfer im Alltag, der Fehler beim
+                            Umrechnen von Preisen minimiert.<br><br>
                             Fix hinterlegte Formeln machen das Umrechnen zum Kinderspiel.<br><br>
-                            Und das Resultat kann  gleich in den Zwischenspeicher kopiert werden. Nicht dass man
-                            das korrekte Resultat falsch abschreibt.
+                            Das Resultat nehmen Sie direkt in den Zwischenspeicher.
+                            So sind sie auch von Tippfehlern sicher.
                         </p>
                         <a href="{{ route('calculator.index') }}" class="btn btn-primary">Zum Rechner</a>
                     </div>
