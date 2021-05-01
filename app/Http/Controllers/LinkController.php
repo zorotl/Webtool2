@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class LinkController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -73,10 +77,10 @@ class LinkController extends Controller
      * @param  \App\Link  $link
      * @return \Illuminate\Http\Response
      */
-//    public function show(Link $link)
-//    {
-//        //
-//    }
+    public function show(Link $link)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
