@@ -52,7 +52,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
                                 <a class="dropdown-item" href="{{ route('item.index') }}">Artikel anzeigen</a>
-                                <a class="dropdown-item" href="{{ route('item.create') }}">Artikel hinzufügen</a>
+{{--                                <a class="dropdown-item" href="{{ route('item.create') }}">Artikel hinzufügen</a>--}}
                                 @auth
                                     <a class="dropdown-item bg-primary text-white" href="{{ route('warehouse.index') }}">Lager</a>
                                     <a class="dropdown-item bg-primary text-white" href="{{ route('brand.index') }}">Marken</a>

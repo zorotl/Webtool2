@@ -35,15 +35,17 @@
 
             @endif
 
-            <div class="float-right">
-{{--                <button class="btn btn-outline-primary" id="headingSearch" type="button" data-toggle="collapse"--}}
-{{--                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">--}}
-{{--                    <i class="fas fa-search mr-2"></i>Suche ein-/ausblenden--}}
-{{--                </button>--}}
-                <a class="btn btn-outline-primary ml-2" href="/item/create">
-                    <i class="fas fa-plus-circle mr-2"></i> Neuen Artikel hinzufügen
-                </a>
-            </div>
+            @auth
+                <div class="float-right">
+    {{--                <button class="btn btn-outline-primary" id="headingSearch" type="button" data-toggle="collapse"--}}
+    {{--                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">--}}
+    {{--                    <i class="fas fa-search mr-2"></i>Suche ein-/ausblenden--}}
+    {{--                </button>--}}
+                    <a class="btn btn-outline-primary ml-2" href="/item/create">
+                        <i class="fas fa-plus-circle mr-2"></i> Neuen Artikel hinzufügen
+                    </a>
+                </div>
+            @endauth
         </div>
 
         <div>
@@ -63,7 +65,7 @@
                         <th scope="col">Art / Zustand</th>
                         <th scope="col">Beschreibung</th>
                         <th scope="col">Artikel-Nummer / EAN</th>
-                        <th style="width: 170px;" scope="col">Bearbeitung</th>
+                        @auth<th style="width: 170px;" scope="col">Bearbeitung</th>@endauth
                     </tr>
                     </thead>
                     <tbody>
@@ -79,28 +81,30 @@
                             <td>{{ $i->itemType->art }} <br> {{$i->itemCondition->zustand }} </td>
                             <td>{{ $i->beschreibung }}</td>
                             <td>{{ $i->artikel_nummer }} <br> {{ $i->ean }}</td>
-                            <td class="align-middle">
-                                <a class="btn btn-sm btn-outline-primary"
-                                   href="/item/{{ $i->id }}/edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a class="btn btn-sm btn-outline-primary ml-1"
-                                   href="/item/{{ $i->id }}/plus">
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                                <a class="btn btn-sm btn-outline-primary ml-1"
-                                   href="/item/{{ $i->id }}/minus">
-                                    <i class="fas fa-minus"></i>
-                                </a>
-                                <form style="display: inline;" action="/item/{{ $i->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button onclick="return confirm('Wirklich löschen?')"
-                                            class="btn btn-outline-danger btn-sm ml-1" type="submit">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            @auth
+                                <td class="align-middle">
+                                    <a class="btn btn-sm btn-outline-primary"
+                                       href="/item/{{ $i->id }}/edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-outline-primary ml-1"
+                                       href="/item/{{ $i->id }}/plus">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-outline-primary ml-1"
+                                       href="/item/{{ $i->id }}/minus">
+                                        <i class="fas fa-minus"></i>
+                                    </a>
+                                    <form style="display: inline;" action="/item/{{ $i->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Wirklich löschen?')"
+                                                class="btn btn-outline-danger btn-sm ml-1" type="submit">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endauth
                         </tr>
                     @endforeach
                     </tbody>

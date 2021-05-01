@@ -45,7 +45,7 @@
                             So behalten Sie stehts die Übersicht.
                         </p>
                         <a href="{{ route('item.index') }}" class="btn btn-primary">Artikel anzeigen</a>
-                        <a href="{{ route('item.create') }}" class="btn btn-primary ml-3">Artikel hinzufügen</a>
+{{--                        <a href="{{ route('item.create') }}" class="btn btn-primary ml-3">Artikel hinzufügen</a>--}}
                     </div>
                 </div>
             </div>
