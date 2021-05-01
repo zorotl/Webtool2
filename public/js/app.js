@@ -37686,7 +37686,7 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-xl-6 col-md-8" }, [
       _c("h1", { staticClass: "h2 text-primary my-3" }, [
-        _vm._v("Tools: Netto-Brutto Rechner")
+        _vm._v("Preis-Rechner")
       ]),
       _vm._v(" "),
       _c(
@@ -37785,7 +37785,7 @@ var render = function() {
           _c("div", { staticClass: "mt-3" }, [
             _c("div", { staticClass: "row" }, [
               _c("span", { staticClass: "col-form-label col-sm-3" }, [
-                _vm._v("Art")
+                _vm._v("Umrechnungs-Art")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-9" }, [
@@ -37875,7 +37875,7 @@ var render = function() {
                 staticClass: "col-sm-3 col-form-label",
                 attrs: { for: "netto" }
               },
-              [_vm._v("Betrag Netto")]
+              [_vm._v("Netto-Preis")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -37971,31 +37971,29 @@ var render = function() {
                   "\n                    "
               ),
               _vm.isEuro
-                ? _c("span", [_vm._v("Euro Netto")])
-                : _c("span", [_vm._v("CHF Netto")])
+                ? _c("span", [_vm._v("Euro")])
+                : _c("span", [_vm._v("CHF")])
             ])
           ]),
           _vm._v(" "),
           _vm.isEuro
             ? _c("li", { staticClass: "list-group-item" }, [
                 _vm._v(
-                  "\n                    Zwischenergebnis:\n                    "
+                  "\n                    Netto-Preis CHF:\n                    "
                 ),
                 _c("span", { staticClass: "float-right" }, [
-                  _vm._v(
-                    _vm._s(_vm.state.calculatorData[0].chfNt) + " CHF Netto"
-                  )
+                  _vm._v(_vm._s(_vm.state.calculatorData[0].chfNt) + " CHF")
                 ])
               ])
             : _vm._e(),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
             _vm.isET
-              ? _c("span", [_vm._v("Ersatzteil-Preis")])
-              : _c("span", [_vm._v("Austausch-Preis")]),
+              ? _c("span", [_vm._v("Ersatzteil-Preis Brutto")])
+              : _c("span", [_vm._v("Austausch-Preis Brutto")]),
             _vm._v(" "),
             _c("span", { staticClass: "float-right" }, [
-              _vm._v(_vm._s(_vm.state.calculatorData[0].chfBr) + " CHF Brutto ")
+              _vm._v(_vm._s(_vm.state.calculatorData[0].chfBr) + " CHF")
             ])
           ])
         ]),
