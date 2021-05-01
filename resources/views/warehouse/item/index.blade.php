@@ -70,8 +70,9 @@
                     @foreach($items as $i)
                         <tr>
                             <td>{{ $i->storagePlace->storageLocation->warehouse->lager }}</td>
-                            <td>{{ $i->storagePlace->storageLocation->lagerort }}
-                                <br> {{ $i->storagePlace->lagerplatz }}</td>
+                            <td>{{ $i->storagePlace->lagerplatz }}</td>
+{{--                            <td>{{ $i->storagePlace->storageLocation->lagerort }}--}}
+{{--                                <br> {{ $i->storagePlace->lagerplatz }}</td>--}}
                             <td>{{ $i->brand->marke }}</td>
                             <td>{{ $i->name }} <br> {{ $i->name2 }}</td>
                             <td>{{ $i->anzahl }}</td>
