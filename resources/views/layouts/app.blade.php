@@ -81,7 +81,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
                                 <a class="dropdown-item" href="{{ route('calculator.index') }}">Rechner</a>
+                                @auth
                                 <a class="dropdown-item bg-primary text-white" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
+                                @endauth
                             </div>
                         </li>
 
