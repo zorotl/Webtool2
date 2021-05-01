@@ -15,6 +15,10 @@ use phpDocumentor\Reflection\Types\Void_;
 
 class ItemController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index', 'search', 'returnViewIndex', 'getStorageLocations', 'getStoragePlace']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,6 +65,9 @@ class ItemController extends Controller
         }
     }
 
+    /**
+     * Returns the View Index. Used in methods INDEX and SEARCH.
+     */
     protected function returnViewIndex($itemQuery ,$oldWH, $oldSL, $oldSP)
     {
         $msg_success = Session::get('msg_success');
@@ -84,17 +91,6 @@ class ItemController extends Controller
                 'msg_success' => $msg_success
             ]
         );
-    }
-
-    /**
-     * Display a listing of the resource, filtered by searching-result.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function result()
-    {
-        //
     }
 
     /**

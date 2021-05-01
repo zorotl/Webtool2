@@ -53,10 +53,12 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
                                 <a class="dropdown-item" href="{{ route('item.index') }}">Artikel anzeigen</a>
                                 <a class="dropdown-item" href="{{ route('item.create') }}">Artikel hinzufügen</a>
-                                <a class="dropdown-item bg-primary text-white" href="{{ route('warehouse.index') }}">Lager</a>
-                                <a class="dropdown-item bg-primary text-white" href="{{ route('brand.index') }}">Marken</a>
-                                <a class="dropdown-item bg-primary text-white" href="{{ route('itemType.index') }}">Artikel-Arten</a>
-                                <a class="dropdown-item bg-primary text-white" href="{{ route('itemCondition.index') }}">Artikel-Zustände</a>
+                                @auth
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('warehouse.index') }}">Lager</a>
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('brand.index') }}">Marken</a>
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('itemType.index') }}">Artikel-Arten</a>
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('itemCondition.index') }}">Artikel-Zustände</a>
+                                @endauth
                             </div>
                         </li>
 
@@ -82,7 +84,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
                                 <a class="dropdown-item" href="{{ route('calculator.index') }}">Rechner</a>
                                 @auth
-                                <a class="dropdown-item bg-primary text-white" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
+                                    <a class="dropdown-item bg-primary text-white" href="{{ route('calculator.edit', '1') }}">Konfiguration</a>
                                 @endauth
                             </div>
                         </li>
