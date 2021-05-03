@@ -58,4 +58,16 @@ jQuery(document).ready(function ($) {
     //         $('#restOfForm').hide();
     //     }
     // });
+
+    $(document).ready( function () {
+        $('#itemTable').DataTable(
+            {
+                lengthMenu: [[25, 50, 100, -1], [25, 50, 100, "Alle"]],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/German.json'
+                }
+            }
+        );
+    } );
+
 });

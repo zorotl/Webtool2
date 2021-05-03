@@ -1,6 +1,6 @@
 <div class="accordion" id="accordionSearch">
     <div class="card text-primary">
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingSearch" data-parent="#accordionSearch">
+        <div id="collapseOne" class="collapse" aria-labelledby="headingSearch" data-parent="#accordionSearch">
             <div class="card-body">
                 <form action="{{ route('item.search') }}" method="post">
                     <fieldset>

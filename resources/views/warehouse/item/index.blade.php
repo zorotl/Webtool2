@@ -35,17 +35,17 @@
 
             @endif
 
-            @auth
-                <div class="float-right">
-    {{--                <button class="btn btn-outline-primary" id="headingSearch" type="button" data-toggle="collapse"--}}
-    {{--                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">--}}
-    {{--                    <i class="fas fa-search mr-2"></i>Suche ein-/ausblenden--}}
-    {{--                </button>--}}
+            <div class="float-right">
+                <button class="btn btn-outline-primary" id="headingSearch" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-search mr-2"></i>Lagersuche ein-/ausblenden
+                </button>
+                @auth
                     <a class="btn btn-outline-primary ml-2" href="/item/create">
                         <i class="fas fa-plus-circle mr-2"></i> Neuen Artikel hinzufügen
                     </a>
-                </div>
-            @endauth
+                @endauth
+            </div>
         </div>
 
         <div>
@@ -54,7 +54,7 @@
 
         <div class="row justify-content-center mt-4">
             <div class="col-12">
-                <table class="table table-sm table-striped">
+                <table id="itemTable" class="table table-sm table-striped">
                     <thead>
                     <tr>
                         <th scope="col">Lager</th>
