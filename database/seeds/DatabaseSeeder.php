@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\LinkSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,12 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(UserSeeder::class);
+//        $this->call(\Database\Seeders\UserSeeder::class);
         $this->call(ItemConditionSeeder::class);
         $this->call(ItemTypeSeeder::class);
         $this->call(BrandSeeder::class);
         $this->call(WarehouseSeeder::class);
         $this->call(CalculatorSeeder::class);
-        $this->call(\Database\Seeders\LinkSeeder::class);
+        $this->call(LinkSeeder::class);
     }
 }
